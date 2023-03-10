@@ -51,7 +51,7 @@ namespace Hospital.Controllers
                     HttpContext.Session.SetString("Role", result.Role);
                     if (result.Role.Equals("Admin"))
                     {
-                        return RedirectToAction("GetAllList");
+                        return RedirectToAction("GetAppoinments", "Admin");
                     }
                     else if (result.Role.Equals("Doctor"))
                     {

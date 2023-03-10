@@ -1,5 +1,4 @@
-﻿body {
-}
+﻿
 .form-group{
     display:flex;
     flex-direction: row;
@@ -11,7 +10,7 @@
     border-radius: 8px;
 }
 .row {
-    margin-top: 20%;
+    margin-top: 100px;
     padding: 35px;
     border: 1px solid grey;
     border-radius: 20px;
@@ -19,9 +18,9 @@
     width: 400px;
     box-shadow: 5px 5px 5px 5px #E5E4E2;
 }
-.submit{
-    padding-left: 250px;
-    width: 20%;
+.btn{
+   
+    width: 150px;
 }
 .input {
 /*    padding-left: 25px;*/
@@ -31,4 +30,30 @@
     display:flex;
     flex-direction: column;
     gap:50px;
+}
+.thead{
+    background-color:#D9DDDC;
+}
+.appoinment{
+    color:#808080;
+}
+.tr{
+    background-color:#F5F5F5;
+    margin-top:5px;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 0 5px;
+}
+.icon-grp{
+    height:120px;
+    width: 120px;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: blue;
+    color: white;
+    gap:2px;
+}
+.delete{
+    background-color:red;
 }

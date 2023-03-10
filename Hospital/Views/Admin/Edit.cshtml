@@ -1,0 +1,82 @@
+﻿@model ModelLayer.Appoinment
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<link rel="stylesheet" href="~/css/Regi.css" />
+
+
+
+@*<h4>Appoinment</h4>
+<hr />*@
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h3>Edit Appoinment</h3>
+            <div class="form-group">
+               @* <label asp-for="AId" class="control-label"></label>*@
+                <input asp-for="AId" class="form-control" readonly type="hidden" />
+                <span asp-validation-for="AId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Photo" class="control-label"></label>*@
+                @*<img src="@Url.Content(Photo)"/>*@
+                <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Name" class="control-label"></label>*@
+                <input asp-for="Name" class="form-control" placeholder="Name"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Doctor" class="control-label"></label>*@
+                <input asp-for="Doctor" class="form-control" readonly placeholder="Doctor"/>
+                <span asp-validation-for="Doctor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Email" class="control-label"></label>*@
+                <input asp-for="Email" class="form-control" placeholder="Email"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Date" class="control-label"></label>*@
+                <input asp-for="Date" class="form-control" placeholder="Date"/>
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Visit_Time" class="control-label"></label>*@
+                <input asp-for="Visit_Time" class="form-control" placeholder="Visit_Time"/>
+                <span asp-validation-for="Visit_Time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Visit_Time" class="control-label"></label>*@
+                <input asp-for="Visit_Time" class="form-control" placeholder="Visit_End"/>
+                <span asp-validation-for="Visit_Time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Number" class="control-label"></label>*@
+                <input asp-for="Number" class="form-control" placeholder="Number"/>
+                <span asp-validation-for="Number" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                @*<label asp-for="Condition" class="control-label"></label>*@
+                <input asp-for="Condition" class="form-control" placeholder=Condition/>
+                <span asp-validation-for="Condition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="cancle" value="cancle" class="btn btn-danger" />
+                <input type="submit" value="Edit Appoinment" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

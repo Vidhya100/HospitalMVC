@@ -31,6 +31,8 @@ namespace Hospital
             services.AddTransient <IUserBL, UserBL>();
             services.AddTransient<IUserRL,UserRL> ();
 
+            services.AddTransient<IAdminBL, AdminBL> ();
+            services.AddTransient<IAdminRL, AdminRL>();
             //for session 
             // services.AddHttpContextAccessor();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
