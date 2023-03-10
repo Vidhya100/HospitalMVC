@@ -82,7 +82,7 @@ namespace RepoLayer
                         appoinment.Name = reader["Pname"].ToString();
                         appoinment.Email = reader["Email"].ToString();
                         //appoinment.Date = reader["Date"].ToString();
-                        //appoinment.Visit_Time =Convert.ToDateTime(reader["VisitTime"]);
+                        //appoinment.Visit_Time = reader["VisitTime"].ToString();
                         //appoinment.Visit_Time = DateOnly.(Convert.ToDateTime(reader["VisitTime"]));
                         appoinment.Number = Convert.ToInt32(reader["Number"]);
                         appoinment.Doctor = reader["Dname"].ToString();

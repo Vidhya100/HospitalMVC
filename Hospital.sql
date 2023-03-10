@@ -39,8 +39,8 @@ select * from Doctor;
 
 create table Appoinment(
 	AId INT Identity Primary Key,
-	Date DATE,
-	VisitTime Time,
+	Date datetime,
+	VisitTime date,
 	Condition varchar(200),
 	DoctorId Int not null foreign key(DoctorId) references Doctor(DoctorId)
 	
@@ -48,6 +48,7 @@ create table Appoinment(
 
  ALTER TABLE Appoinment Alter column VisitTime datetime; 
  ALTER TABLE Appoinment Alter column VisitEnd datetime; 
+  ALTER TABLE Appoinment Alter column Date date;
  
 Drop table Appoinment
 ALTER TABLE Appoinment ADD VisitEnd Time;
@@ -84,7 +85,7 @@ as
 begin
 
 	select a.AId, p.ProfileImg, p.Pname, p.Email, a.Date, a.VisitTime, p.Number, d.Dname, a.Condition from
-		Patients as p inner join Doctor as d ON  p.PId = d.PId inner join Appoinment as a on d.DoctorId = a.DoctorId where AId = @AId;
+		Patients as p inner join Doctor as d ON  p.PId = d.PId inner join Appoinment as a on d.DoctorId = a.DoctorId where a.AId = @AId;
 End
 
 Exec spGetById 2
@@ -94,14 +95,14 @@ alter procedure spUpdate
 	@AId int,
 	@Pname varchar(200),
 	@Email varchar(200),
-	@Date Date,
+	@Date date,
 	@VisitTime datetime,
 	@VisitEnd datetime,
 	@Condition varchar(200)
 )
 as
 begin
-		Update Patients SET Pname=@Pname, Email=@Email where AId=@AId ;
+		--Update Patients SET Pname=@Pname, Email=@Email where AId=@AId ;
 		Update Appoinment SET Date=@Date, VisitTime=@VisitTime, VisitEnd=@VisitEnd, Condition = @Condition where AId=@AId;
 end
 
@@ -112,11 +113,23 @@ create or alter procedure spDelete(
 )
 as
 begin
-		Delete from Patients where AId= @AId;
-		Delete from Appoinment where AId =@AId;
-		Delete Dname from Doctor where AId =@AId;
+		--Delete from Patients where AId= @AId;
+		--Delete from Appoinment where AId =@AId;
+		--Delete Dname from Doctor where AId =@AId;
+
+		--delete a.AId, p.ProfileImg, p.Pname, p.Email, a.Date, a.VisitTime, p.Number, d.Dname, a.Condition from
+		--Patients as p inner join Doctor as d ON  p.PId = d.PId inner join Appoinment as a on d.DoctorId = a.DoctorId where AId = @AId;
+
+		--delete Patients, Doctor, Appoinment from Patients inner join Doctor on Patients.PId = Doctor.PId  inner join Appoinment on Doctor.DoctorId = Appoinment.DoctorId
+		--where Appoinment.AId = @AId;
 end
 
+
+/*-------------For Doctor View*/
+create procedure spGetDocAppoinments
+as
+begin
+end
 
 create table Admin(
     AdminId Int Primary key Identity,
