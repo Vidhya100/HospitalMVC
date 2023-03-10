@@ -1,0 +1,36 @@
+﻿.col-md-4 {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.row {
+    margin-top: 100px;
+    padding: 35px;
+    border: 1px solid grey;
+    border-radius: 20px;
+    margin-left: 400px;
+    width: 400px;
+    box-shadow: 5px 5px 5px 5px #E5E4E2;
+}
+
+.save-btn {
+    //align-items:center;
+    padding-left: 130px;
+}
+
+inputs {
+    padding-left: 25px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
