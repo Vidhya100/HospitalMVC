@@ -16,31 +16,10 @@
                 @Html.DisplayNameFor(model => model.AId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Role)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Photo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Dname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Degree)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
@@ -50,9 +29,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Visit_Time)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Visit_End)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Number)
@@ -73,31 +49,10 @@
                 @Html.DisplayFor(modelItem => item.AId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Photo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Degree)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
@@ -109,9 +64,6 @@
                 @Html.DisplayFor(modelItem => item.Visit_Time)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Visit_End)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Number)
             </td>
             <td>
@@ -120,17 +72,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Condition)
             </td>
-            <td>
-                <a class="icon-grp" href="@Url.Action("Edit", "Admin", new { Aid = item.AId })">
-                </a>
-               @* @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+           @* <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-
-                <a class="icon-grp delete" href="@Url.Action("Delete", "Delete", new { Aid = item.AId })">
-                         <i class="fas fa-trash"></i>
-                </a>
-            </td>
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>*@
         </tr>
 }
     </tbody>

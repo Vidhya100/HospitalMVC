@@ -19,7 +19,7 @@
     box-shadow: 5px 5px 5px 5px #E5E4E2;
 }
 .btn{
-   
+    cursor:pointer;
     width: 150px;
 }
 .input {

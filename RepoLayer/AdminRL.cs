@@ -37,13 +37,16 @@ namespace RepoLayer
                         Appoinment appoinment = new Appoinment();
 
                         appoinment.AId = Convert.ToInt32(reader["AId"]);
+                        appoinment.PId = Convert.ToInt32(reader["PId"]);
+                        appoinment.DId = Convert.ToInt32(reader["DId"]);
                         appoinment.Photo = reader["ProfileImg"].ToString();
-                        appoinment.Name = reader["Pname"].ToString();
+                        appoinment.Pname = reader["Pname"].ToString();
                         appoinment.Email = reader["Email"].ToString();
-                        //appoinment.Date = Convert.ToInt32(reader["Date"]);
-                        //appoinment.Visit_Time =reader["Time"]);
+                        appoinment.Date = Convert.ToDateTime(reader["Date"]);
+                        appoinment.Visit_Time =Convert.ToDateTime(reader["VisitStartTime"]);
+                        appoinment.Visit_End = Convert.ToDateTime(reader["VisiteEndTime"]);
                         appoinment.Number = Convert.ToInt32(reader["Number"]);
-                        appoinment.Doctor = reader["Dname"].ToString();
+                        appoinment.Dname = reader["Dname"].ToString();
                         appoinment.Condition = reader["Condition"].ToString();
 
                         lstAppoinments.Add(appoinment);
@@ -75,17 +78,19 @@ namespace RepoLayer
                     Appoinment appoinment = new Appoinment();
                     while (reader.Read())
                     {
-                        
+
 
                         appoinment.AId = Convert.ToInt32(reader["AId"]);
+                        appoinment.PId = Convert.ToInt32(reader["PId"]);
+                        appoinment.DId = Convert.ToInt32(reader["DId"]);
                         appoinment.Photo = reader["ProfileImg"].ToString();
-                        appoinment.Name = reader["Pname"].ToString();
+                        appoinment.Pname = reader["Pname"].ToString();
                         appoinment.Email = reader["Email"].ToString();
-                        //appoinment.Date = reader["Date"].ToString();
-                        //appoinment.Visit_Time = reader["VisitTime"].ToString();
-                        //appoinment.Visit_Time = DateOnly.(Convert.ToDateTime(reader["VisitTime"]));
+                        appoinment.Date = Convert.ToDateTime(reader["Date"]);
+                        appoinment.Visit_Time = Convert.ToDateTime(reader["VisitStartTime"]);
+                        appoinment.Visit_End = Convert.ToDateTime(reader["VisiteEndTime"]);
                         appoinment.Number = Convert.ToInt32(reader["Number"]);
-                        appoinment.Doctor = reader["Dname"].ToString();
+                        appoinment.Dname = reader["Dname"].ToString();
                         appoinment.Condition = reader["Condition"].ToString();
                     }
                     return appoinment;
@@ -110,11 +115,14 @@ namespace RepoLayer
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@AId", appoinment.AId);
-                    cmd.Parameters.AddWithValue("@Pname", appoinment.Name);
-                    cmd.Parameters.AddWithValue("@Dname", appoinment.Doctor);
+                    cmd.Parameters.AddWithValue("@PId", appoinment.PId);
+                    cmd.Parameters.AddWithValue("@DId", appoinment.DId);
+                    cmd.Parameters.AddWithValue("@ProfileImg", appoinment.Photo);
+                    cmd.Parameters.AddWithValue("@Pname", appoinment.Pname);
+                    cmd.Parameters.AddWithValue("@Dname", appoinment.Dname);
                     cmd.Parameters.AddWithValue("@Date", appoinment.Date);
                     cmd.Parameters.AddWithValue("@VisitTime", appoinment.Visit_Time);
-                    //cmd.Parameters.AddWithValue("@VisitEnd", appoinment.Visit_End);
+                    cmd.Parameters.AddWithValue("@VisitEnd", appoinment.Visit_End);
                     cmd.Parameters.AddWithValue("@Condition", appoinment.Condition);
 
                     con.Open();

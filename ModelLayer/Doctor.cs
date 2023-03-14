@@ -6,10 +6,12 @@ namespace ModelLayer
 {
     public class Doctor
     {
-        public int DoctorId { get; set; }
+        public int DId { get; set; }
+        public string Photo { get; set; }
         public string Dname { get; set; }
         public string Degree { get; set; }
-        public string Email { get; set; }
-        public int PId { get; set; }
+        public string Address { get; set; }
+        
+        
     }
 }

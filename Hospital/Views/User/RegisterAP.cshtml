@@ -1,0 +1,99 @@
+﻿@model ModelLayer.RegiModel
+
+@{
+    ViewData["Title"] = "RegisterAP";
+}
+<link rel="stylesheet" href="~/css/Regi.css" />
+
+
+@*<h1>RegisterAP</h1>
+
+<h4>RegiModel</h4>
+<hr />*@
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="RegisterAP">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                   <div class="Admin/Patients">
+                       <a asp-action="RegisterAp" > 
+                           <input value="Admin/Patient" class="btn btn-primary" />
+                       </a>
+                   </div>
+                   <div class="Doc">
+                       <a asp-action="RegisterDoc">
+                           <input value="Doctor" class="btn btn-primary" />
+                       </a>
+                   </div>
+            </div>
+            <div class="form-group">
+                <h3>Register</h3>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Username" class="control-label"></label>*@
+                <input asp-for="Username" class="form-control" placeholder="Username"/>
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Fullname" class="control-label"></label>*@
+                <input asp-for="Fullname" class="form-control" placeholder="Fullname"/>
+                <span asp-validation-for="Fullname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Photo" class="control-label"></label>*@
+                    <div>
+                        @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/Ellipse -1.png")
+                        <img class="Profile-img-1" src="~/assets/profile-images/Ellipse -1.png"  />
+                        @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/Ellipse -3.png")
+                        <img class="Profile-img-1" src="~/assets/profile-images/Ellipse -3.png"  />
+                        @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/Ellipse -2.png")
+                        <img class="Profile-img-1" src="~/assets/profile-images/Ellipse -2.png"  />
+                        @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/Ellipse -5.png")
+                        <img class="Profile-img-1" src="~/assets/profile-images/Ellipse -5.png"  />
+                    </div>                
+                <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Email" class="control-label"></label>*@
+                <input asp-for="Email" class="form-control" placeholder="Email"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Password" class="control-label"></label>*@
+                <input asp-for="Password" class="form-control" placeholder="Password"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+               @* <label asp-for="Role" class="control-label"></label>*@
+                <input asp-for="Role" class="form-control" placeholder="Role"/>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>             
+            <div class="form-group">
+                @*<label asp-for="Degree" class="control-label"></label>*@
+                <input asp-for="Degree" class="form-control" placeholder="Degree" value=" " reaonly type="hidden" />
+                <span asp-validation-for="Degree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Address" class="control-label"></label>*@
+                <input asp-for="Address" class="form-control" placeholder="Address" value=" " reaonly type="hidden"/>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <a asp-action="Login">
+                <input type="submit" value="SignUp" class="btn btn-primary" />
+                </a>
+                <a asp-action="Login">
+                <input value="SignIn" class="btn btn-primary" />
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+*@
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

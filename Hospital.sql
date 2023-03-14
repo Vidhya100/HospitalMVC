@@ -1,6 +1,8 @@
 create database Hospital;
 use Hospital;
 
+drop database Hospital
+
 create table Patients(
 PId Int Identity Primary key,
 Pname varchar(200),
@@ -93,8 +95,8 @@ Exec spGetById 2
 alter procedure spUpdate
 (
 	@AId int,
-	@Pname varchar(200),
-	@Email varchar(200),
+	--@Pname varchar(200),
+	--@Email varchar(200),
 	@Date date,
 	@VisitTime datetime,
 	@VisitEnd datetime,
@@ -104,6 +106,11 @@ as
 begin
 		--Update Patients SET Pname=@Pname, Email=@Email where AId=@AId ;
 		Update Appoinment SET Date=@Date, VisitTime=@VisitTime, VisitEnd=@VisitEnd, Condition = @Condition where AId=@AId;
+
+		--if (select * from appoinment where AId = @AID)
+		--then 
+		--	Insert into Patients values(Pname= @Pname, Email=@Email)
+		--	Insert 
 end
 
 Exec spUpdate 3,'Swati','swati@gmail.com','2023-12-07','00:10:00.0000','00:10:15.0000','Highly injured'
