@@ -17,12 +17,12 @@ namespace Hospital.Controllers
             this.iuserBL = iuserBL;
             this.context = context;
         }
-        public IActionResult Register()
+        public IActionResult RegisterAp()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult Register([Bind]RegiModel regiModel)
+        public IActionResult RegisterAP([Bind]RegiModel regiModel)
         {
             if (ModelState.IsValid)
             {
@@ -32,11 +32,28 @@ namespace Hospital.Controllers
             return View();  
         }
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult RegisterDoc()
         {
             return View();
         }
         [HttpPost]
+        public IActionResult RegisterDoc([Bind] RegiModel regiModel)
+        {
+            if (ModelState.IsValid)
+            {
+                iuserBL.Registration(regiModel);
+                return RedirectToAction("Login");
+            }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost ]
+        //custom route
+       // [Route("User/UserLogin")]
         public IActionResult Login([Bind]LoginModel loginModel)
         {
             string message= string.Empty;
@@ -45,7 +62,8 @@ namespace Hospital.Controllers
                 var result = iuserBL.Login(loginModel);
                 if(result != null)
                 {
-                    //HttpContext.Session.SetString("Username", result.Username);
+                    HttpContext.Session.SetInt32("UserId", result.UserId);
+                    HttpContext.Session.SetString("Username", result.Username);
                     HttpContext.Session.SetString("Email", result.Email);
                     HttpContext.Session.SetString("Password", result.Password);
                     HttpContext.Session.SetString("Role", result.Role);
@@ -55,11 +73,11 @@ namespace Hospital.Controllers
                     }
                     else if (result.Role.Equals("Doctor"))
                     {
-                        return RedirectToAction("DocAppointmen1ts");
+                        return RedirectToAction("GetAppoinments", "Doctor");
                     }
                     else
                     {
-                        return RedirectToAction("PatientView");
+                        return RedirectToAction("GetDocList", "Patients");
                     }
                     message = "Username and Password is correct.";
                     Console.WriteLine(message);

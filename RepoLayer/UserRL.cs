@@ -26,12 +26,30 @@ namespace RepoLayer
                     SqlCommand cmd = new SqlCommand("spRegister", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
+                    con.Open();
+                    cmd.Parameters.AddWithValue("Role", regiModel.Role);
                     cmd.Parameters.AddWithValue("Username", regiModel.Username);
                     cmd.Parameters.AddWithValue("Email", regiModel.Email);
                     cmd.Parameters.AddWithValue("Password", regiModel.Password);
-                    cmd.Parameters.AddWithValue("Role", regiModel.Role);
+                    cmd.Parameters.AddWithValue("Fullname", regiModel.Fullname);
+                    cmd.Parameters.AddWithValue("ProfileIng", regiModel.Photo);
+                    //cmd.Parameters.AddWithValue("Degree", regiModel.Degree);
+                    //cmd.Parameters.AddWithValue("Address", regiModel.Address);
 
-                    con.Open();
+                    if (regiModel.Role == "Patient" || regiModel.Role == "Admin")
+                    {
+
+                        
+                        cmd.Parameters.AddWithValue("Degree", "-");
+                        cmd.Parameters.AddWithValue("Address", "-");
+
+                    }
+                    else if (regiModel.Role == "Doctor")
+                    {
+                       
+                        cmd.Parameters.AddWithValue("Degree", regiModel.Degree);
+                        cmd.Parameters.AddWithValue("Address", regiModel.Address);
+                    }
                     var result = cmd.ExecuteNonQuery();
                     if(result != 0)
                     {
@@ -48,6 +66,7 @@ namespace RepoLayer
                 throw;
             }
         }
+       
         public RegiModel Login(LoginModel loginModel)
         {
             try
@@ -59,15 +78,13 @@ namespace RepoLayer
                     con.Open();
                     cmd.Parameters.AddWithValue("Email", loginModel.Email);
                     cmd.Parameters.AddWithValue("Password", loginModel.Password);
-                    //cmd.Parameters.AddWithValue("Role", regiModel.Role);
 
 
                     var result = cmd.ExecuteScalar();
 
                     if (result != null)
                     {
-                        //string query = "SELECT * from Register where Email = " +result + "";
-                        //SqlCommand commmand = new SqlCommand(query, con);
+                        
                         SqlDataReader reader = cmd.ExecuteReader();
                         RegiModel regiModel = new RegiModel();
    

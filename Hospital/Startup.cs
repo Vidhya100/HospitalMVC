@@ -33,6 +33,13 @@ namespace Hospital
 
             services.AddTransient<IAdminBL, AdminBL> ();
             services.AddTransient<IAdminRL, AdminRL>();
+
+            services.AddTransient<IDoctorBL, DoctorBL>();
+            services.AddTransient<IDoctorRL, DoctorRL>();
+
+            services.AddTransient<IPatientsBL, PatientsBL>();
+            services.AddTransient<IPatientsRL, PatientRL>();
+
             //for session 
             // services.AddHttpContextAccessor();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -70,7 +77,7 @@ namespace Hospital
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=User}/{action=Register}/{id?}");
+                    pattern: "{controller=User}/{action=RegisterAp}/{id?}");
             });
         }
     }
