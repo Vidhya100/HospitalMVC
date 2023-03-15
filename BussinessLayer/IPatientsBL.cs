@@ -7,7 +7,9 @@ namespace BussinessLayer
 {
     public interface IPatientsBL
     {
-        public IEnumerable<Appoinment> GetDocList(string Role);
-        public Appoinment GetApoointment(int DId, int PId);
+        public IEnumerable<Doctor> GetDocList(string Role);
+        public CreateApModel CreateApoointment(int DId, int PId, CreateApModel appoinments);
+        public IEnumerable<CreateApModel> ViewAppoinmentList(int PId, CreateApModel appoinments);
+
     }
 }

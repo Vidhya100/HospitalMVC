@@ -51,6 +51,7 @@ namespace Hospital.Controllers
         {
             return View();
         }
+       
         [HttpPost ]
         //custom route
        // [Route("User/UserLogin")]

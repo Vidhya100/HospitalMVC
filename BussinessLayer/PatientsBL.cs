@@ -15,7 +15,7 @@ namespace BussinessLayer
             this.patientsRL = patientsRL;
         }
 
-        public IEnumerable<Appoinment> GetDocList(string Role)
+        public IEnumerable<Doctor> GetDocList(string Role)
         {
             try
             {
@@ -26,13 +26,24 @@ namespace BussinessLayer
                 throw;
             }
         }
-        public Appoinment GetApoointment(int DId, int PId)
+        public CreateApModel CreateApoointment(int DId, int PId, CreateApModel appoinments)
         {
             try
             {
-                return patientsRL.GetApoointment(DId,PId);
+                return patientsRL.CreateApoointment(DId, PId, appoinments);
             }
             catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public IEnumerable<CreateApModel> ViewAppoinmentList(int PId, CreateApModel appoinments)
+        {
+            try
+            {
+                return patientsRL.ViewAppoinmentList(PId,appoinments);
+            }
+            catch
             {
                 throw;
             }

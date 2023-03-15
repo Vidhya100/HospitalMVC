@@ -1,0 +1,105 @@
+﻿@model ModelLayer.CreateApModel
+@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "CreateApoointment";
+}
+<link rel="stylesheet" href="~/css/Regi.css" />
+
+<h1>CreateApoointment</h1>
+
+<h4>CreateApModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="CreateApoointment">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+               @* <label asp-for="AId" class="control-label"></label>*@
+                <input asp-for="AId" class="form-control" value="-1" readonly type="hidden"/>
+                <span asp-validation-for="AId" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                @*<label asp-for="PId" class="control-label"></label>*@
+                <input asp-for="PId" class="form-control" value=@Context.Session.GetInt32("UserId") readonly />               
+                <span asp-validation-for="PId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+               @* <label asp-for="DId" class="control-label"></label>*@
+                <input asp-for="DId" class="form-control"  value=@Context.Session.GetInt32("DId") readonly />
+                <span asp-validation-for="DId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+               @* <label asp-for="Dname" class="control-label"></label>*@
+                <input asp-for="Dname" class="form-control" value=@Context.Session.GetString("Dname") reaonly/>
+                <span asp-validation-for="Dname" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                @*<label asp-for="Photo" class="control-label"></label>*@
+                   <div>
+                        @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/Ellipse -1.png")
+                        <img class="Profile-img-1" src="~/assets/profile-images/Ellipse -1.png"  />
+                        @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/Ellipse -3.png")
+                        <img class="Profile-img-1" src="~/assets/profile-images/Ellipse -3.png"  />
+                        @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/Ellipse -2.png")
+                        <img class="Profile-img-1" src="~/assets/profile-images/Ellipse -2.png"  />
+                        @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/Ellipse -5.png")
+                        <img class="Profile-img-1" src="~/assets/profile-images/Ellipse -5.png"  />
+                    </div>             
+                <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Pname" class="control-label"></label>*@
+                <input asp-for="Pname" class="form-control" placeholder=Fullname/>
+                <span asp-validation-for="Pname" class="text-danger"></span>
+            </div>
+             
+            <div class="form-group">
+               @* <label asp-for="Date" class="control-label"></label>*@
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Visit_Time" class="control-label"></label>*@
+                <input asp-for="Visit_Time" class="form-control" />
+                <span asp-validation-for="Visit_Time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Visit_End" class="control-label"></label>*@
+                <input asp-for="Visit_End" class="form-control" />
+                <span asp-validation-for="Visit_End" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+               @* <label asp-for="Condition" class="control-label"></label>*@
+                <input asp-for="Email" class="form-control" placeholder="Condition"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+                
+            </div>
+            <div class="form-group">
+               @* <label asp-for="Number" class="control-label"></label>*@
+                <input asp-for="Number" class="form-control" />
+                <span asp-validation-for="Number" class="text-danger" placeholder="Mobile Number"></span>
+            </div>
+            <div class="form-group">
+               @* <label asp-for="Condition" class="control-label"></label>*@
+                <input asp-for="Condition" class="form-control" placeholder="Condition"/>
+                <span asp-validation-for="Condition" class="text-danger"></span>
+                
+            </div>
+            <div class="form-group">
+                <a asp-action="ViewAppointmentList">
+                 <input type="submit" value="Submit" class="btn btn-primary" />
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

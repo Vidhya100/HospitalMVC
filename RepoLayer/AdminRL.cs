@@ -24,7 +24,7 @@ namespace RepoLayer
                 List<Appoinment> lstAppoinments = new List<Appoinment>();
                 using (SqlConnection con = new SqlConnection(this.iconfiguration.GetConnectionString("Hospital")))
                 {
-                    SqlCommand cmd = new SqlCommand("spGqtAllAppointments", con);
+                    SqlCommand cmd = new SqlCommand("GetAllAppoinments", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                 
 
@@ -68,7 +68,7 @@ namespace RepoLayer
                 Appoinment appoinments = new Appoinment();
                 using (SqlConnection con = new SqlConnection(this.iconfiguration.GetConnectionString("Hospital")))
                 {
-                    SqlCommand cmd = new SqlCommand("spGetById", con);
+                    SqlCommand cmd = new SqlCommand("spAppoinmentDetails", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
 

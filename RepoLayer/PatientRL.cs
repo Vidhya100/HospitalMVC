@@ -18,11 +18,11 @@ namespace RepoLayer
         }
 
         //For getting doctors deatils
-        public IEnumerable<Appoinment> GetDocList(string Role)
+        public IEnumerable<Doctor> GetDocList(string Role)
         {
             try
             {
-                List<Appoinment> lstAppoinments = new List<Appoinment>();
+                List<Doctor> lstDoctor = new List<Doctor>();
                 using (SqlConnection con = new SqlConnection(this.iconfiguration.GetConnectionString("Hospital")))
                 {
                     SqlCommand cmd = new SqlCommand("spGetDocList", con);
@@ -41,19 +41,19 @@ namespace RepoLayer
 
                         while (reader.Read())
                         {
-                            Appoinment appoinment = new Appoinment();
+                            Doctor doctor = new Doctor();
 
-                            appoinment.DId = Convert.ToInt32(reader["UserId"]);
-                            appoinment.Photo = reader["ProfileIng"].ToString();
-                            appoinment.Dname = reader["Username"].ToString();
-                            appoinment.Degree = reader["Degree"].ToString();
-                            appoinment.Address = reader["Address"].ToString();
+                            doctor.DId = Convert.ToInt32(reader["UserId"]);
+                            doctor.Photo = reader["ProfileIng"].ToString();
+                            doctor.Dname = reader["Username"].ToString();
+                            doctor.Degree = reader["Degree"].ToString();
+                            doctor.Address = reader["Address"].ToString();
 
-                            lstAppoinments.Add(appoinment);
+                            lstDoctor.Add(doctor);
                         }
                         con.Close();
                     }
-                    return lstAppoinments;
+                    return lstDoctor;
                 }
             }
             catch (Exception ex)
@@ -61,11 +61,11 @@ namespace RepoLayer
                 throw;
             }
         }
-        public Appoinment GetApoointment(int DId, int PId)
+        public CreateApModel CreateApoointment(int DId, int PId, CreateApModel appoinments)
         {
             try
             {
-                Appoinment appoinments = new Appoinment();
+                //Appoinment appoinments = new Appoinment();
                 using (SqlConnection con = new SqlConnection(this.iconfiguration.GetConnectionString("Hospital")))
                 {
                     SqlCommand cmd = new SqlCommand("spCreateAppointments", con);
@@ -76,45 +76,50 @@ namespace RepoLayer
                     cmd.Parameters.AddWithValue("DId", DId);
                     cmd.Parameters.AddWithValue("PId", PId);
 
-                    //cmd.Parameters.AddWithValue("AId", appoinments.AId);
+                    
                     cmd.Parameters.AddWithValue("ProfileImg", appoinments.Photo);
                     cmd.Parameters.AddWithValue("Pname", appoinments.Pname);
                     cmd.Parameters.AddWithValue("Dname", appoinments.Dname);
                     cmd.Parameters.AddWithValue("Date", appoinments.Date);
                     cmd.Parameters.AddWithValue("VisitStartTime", appoinments.Visit_Time);
-                    cmd.Parameters.AddWithValue("VisitEndTime", appoinments.Visit_End);
+                    cmd.Parameters.AddWithValue("VisiteEndTime", appoinments.Visit_End);
                     cmd.Parameters.AddWithValue("Condition", appoinments.Condition);
                     cmd.Parameters.AddWithValue("Number", appoinments.Number);
                     cmd.Parameters.AddWithValue("Email", appoinments.Email);
 
                     var result = cmd.ExecuteNonQuery();
+                    //con.Close();
                     if (result != 0)
                     {
-                         result = (int)cmd.ExecuteScalar();
-                        if (result != null)
-                        {
+                         
                             SqlCommand cmd2 = new SqlCommand("spGetAppointmentID", con);
                             cmd2.CommandType = CommandType.StoredProcedure;
-
-                          
+                            
                             cmd2.Parameters.AddWithValue("DId", DId);
                             cmd2.Parameters.AddWithValue("PId", PId);
 
-                            SqlDataReader reader = cmd2.ExecuteReader();
-
-                            while (reader.Read())
+                        var result2 = cmd2.ExecuteScalar();
+                        
+                        if (result2 != null)
+                        {
+                            //to close reader automatically
+                            using (SqlDataReader reader = cmd2.ExecuteReader())
                             {
-                                appoinments.AId = Convert.ToInt32(reader["AId"]);
+
+                                while (reader.Read())
+                                {
+                                    appoinments.AId = Convert.ToInt32(reader["AId"]);
+                                }
                             }
-                            
-                            SqlCommand cmd1 = new SqlCommand("spDoctorAppointment", con);
+                            SqlCommand cmd1 = new SqlCommand("spDPAppointment", con);
                             cmd1.CommandType = CommandType.StoredProcedure;
 
-
+                            //con.Open();
                             cmd1.Parameters.AddWithValue("AId", appoinments.AId);
                             cmd1.Parameters.AddWithValue("DId", DId);
-                            var result1 = cmd.ExecuteNonQuery();
-                           // con.Close();
+                            cmd1.Parameters.AddWithValue("PId", PId);
+                            var result1 = cmd1.ExecuteNonQuery();
+                            //con.Close();
                             if (result1 != 0)
                             {
                                 return appoinments;
@@ -137,6 +142,73 @@ namespace RepoLayer
 
                 }
 
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public IEnumerable<CreateApModel> ViewAppoinmentList(int PId, CreateApModel appoinment)
+        {
+            try
+            {
+                List<CreateApModel> lstAppoinments = new List<CreateApModel>();
+                using (SqlConnection con = new SqlConnection(this.iconfiguration.GetConnectionString("Hospital")))
+                {
+                    SqlCommand cmd = new SqlCommand("GetPAppoinmentList", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    con.Open();
+                    cmd.Parameters.AddWithValue("PId", PId);
+
+                   var result = cmd.ExecuteScalar();
+                   if(result != null )
+                    {
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        while (reader.Read())
+                        {   
+                            appoinment.AId = Convert.ToInt32(reader["AId"]);
+                            //appoinment.PId = Convert.ToInt32(reader["PId"]);
+                            //lstAppoinments.Add(appoinment);
+                        }
+
+                        //for reading data from Appoinment table
+                        SqlCommand cmd1 = new SqlCommand("GetPatientAppoinments", con);
+                        cmd1.CommandType = CommandType.StoredProcedure;
+                        //con.Close();
+                        //con.Open();
+                        //var result1 = cmd1.ExecuteScalar();
+                       
+                        //if (result1 != null)
+                        //{
+                            SqlDataReader reader1 = cmd1.ExecuteReader();
+
+                            while (reader1.Read())
+                            {
+                                //CreateApModel appoinment = new CreateApModel();
+
+                                appoinment.AId = Convert.ToInt32(reader1["AId"]);
+                                appoinment.PId = PId;
+                                appoinment.DId = Convert.ToInt32(reader1["DId"]);
+                                appoinment.Photo = reader1["ProfileImg"].ToString();
+                                appoinment.Pname = reader1["Pname"].ToString();
+                                appoinment.Email = reader1["Email"].ToString();
+                                appoinment.Date = Convert.ToDateTime(reader1["Date"]);
+                                appoinment.Visit_Time = Convert.ToDateTime(reader1["VisitStartTime"]);
+                                appoinment.Visit_End = Convert.ToDateTime(reader1["VisiteEndTime"]);
+                                appoinment.Number = Convert.ToInt32(reader1["Number"]);
+                                appoinment.Dname = reader1["Dname"].ToString();
+                                appoinment.Condition = reader1["Condition"].ToString();
+
+                                lstAppoinments.Add(appoinment);
+                            }
+                        //}
+
+                    }                   
+                   // con.Close();
+                }
+                return lstAppoinments;
             }
             catch (Exception ex)
             {
