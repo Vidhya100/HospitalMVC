@@ -97,7 +97,7 @@ namespace RepoLayer
                                 regiModel.Password = reader["Password"].ToString();
                                 regiModel.Role = reader["Role"].ToString();
                             }
-                        
+                        //con.Close();
                         return regiModel;
                     }
                     else

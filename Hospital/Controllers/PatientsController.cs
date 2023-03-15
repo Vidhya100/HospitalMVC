@@ -15,12 +15,13 @@ namespace Hospital.Controllers
         {
             this.patientsBL = patientsBL;
         }
+        [HttpGet]
         public IActionResult GetDocList()
         {
             var role = HttpContext.Session.GetString("Role");
             if (role == "Patient")
             {
-                List<Appoinment> lstappoinment = new List<Appoinment>();
+                List<Doctor> lstappoinment = new List<Doctor>();
                 lstappoinment = patientsBL.GetDocList("Doctor").ToList();
 
                 return View(lstappoinment);
@@ -30,38 +31,46 @@ namespace Hospital.Controllers
                 return View();
             }
         }
+        //return for storing Doctor Id and Name from view
         [HttpGet]
-        public IActionResult GetAppointment()
+        public IActionResult GetAppointmentId(int DId,string Dname)
         {
+            if(ModelState.IsValid)
+            {
+                HttpContext.Session.SetInt32("DId", DId);
+                HttpContext.Session.SetString("Dname", Dname);
+                return RedirectToAction("CreateApoointment");
+            }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult CreateApoointment()
+        {
+            
             return View();
         }
         [HttpPost]
-        public IActionResult GetAppointment(int DId)
+        public IActionResult CreateApoointment(CreateApModel appoinments)
         {
             
             if (ModelState.IsValid)
             {
                 int PId = (int)HttpContext.Session.GetInt32("UserId");
-                patientsBL.GetApoointment(DId, PId);
-                return RedirectToAction("GetAppointmentList");
+                int DId = (int)HttpContext.Session.GetInt32("DId");
+                patientsBL.CreateApoointment(DId, PId, appoinments);
+                return RedirectToAction("ViewAppoinmentList");
             }
             return View();
         }
         [HttpGet]
-        public IActionResult GetAppointmentList()
+        public IActionResult ViewAppoinmentList(CreateApModel appoinments)
         {
-            var role = HttpContext.Session.GetString("Role");
-            if (role == "Patient")
-            {
-                List<Appoinment> lstappoinment = new List<Appoinment>();
-                lstappoinment = patientsBL.GetDocList("Doctor").ToList();
-
-                return View(lstappoinment);
-            }
-            else
-            {
-                return View();
-            }
+            int PId = (int)HttpContext.Session.GetInt32("UserId");
+            List<CreateApModel> lstAppoinments = new List<CreateApModel>();
+            lstAppoinments = patientsBL.ViewAppoinmentList(PId,appoinments).ToList();
+            return View(lstAppoinments);
+           
         }
+
     }
 }

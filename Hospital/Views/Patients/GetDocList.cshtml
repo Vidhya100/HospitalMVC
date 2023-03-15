@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ModelLayer.Appoinment>
+﻿@model IEnumerable<ModelLayer.Doctor>
 
 @{
     ViewData["Title"] = "GetDocList";
@@ -7,7 +7,7 @@
 <h1>GetDocList</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="ViewAppoinmentList">View Appoinments</a>
 </p>
 <table class="table">
     <thead>
@@ -40,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.DId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Photo)
+                <img src="@Url.Content(item.Photo)"/>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Dname)
@@ -52,8 +52,11 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                <a asp-action="GetAppointment">
+                @*<a asp-action="GetDocList">
                    <input type="submit" value="Take Appoinment" class="btn btn-primary" />
+                </a>*@
+                <a class="icon-grp" href="@Url.Action("GetAppointmentId", "Patients", new { DId = item.DId , Dname=item.Dname})">
+                    Take Appoinment
                 </a>
                 
             </td>
