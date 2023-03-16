@@ -17,77 +17,84 @@ namespace RepoLayer
             this.iconfiguration = iconfiguration;
         }
 
-        public IEnumerable<Appoinment> GetAllApoointments(int DId)
+        public IEnumerable<CreateApModel> ViewAppoinmentList(int DId, CreateApModel appoinment)
         {
             try
             {
-                List<Appoinment> lstAppoinments = new List<Appoinment>();
+                List<int> lstAId = new List<int>();
+                //Detail list of appoinments
                 using (SqlConnection con = new SqlConnection(this.iconfiguration.GetConnectionString("Hospital")))
                 {
+
+                    //1. fectch appointment id's for Doctor id from doctor table
                     SqlCommand cmd = new SqlCommand("GetAppoinmentList", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     con.Open();
-
                     cmd.Parameters.AddWithValue("DId", DId);
 
                     var result = cmd.ExecuteScalar();
-
                     if (result != null)
                     {
-                        SqlDataReader reader = cmd.ExecuteReader();
-
-                        while (reader.Read())
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            Appoinment appoinment = new Appoinment();
-
-                            appoinment.AId = Convert.ToInt32(reader["AId"]);
-
-                            SqlCommand cmd2 = new SqlCommand("spAppoinmentDetails", con);
-                            cmd2.CommandType = CommandType.StoredProcedure;
-
-                            cmd2.Parameters.AddWithValue("AId", appoinment.AId);
-
-                            var result2 = cmd.ExecuteScalar();
-
-                            if (result != null)
+                            while (reader.Read())
                             {
-                                SqlDataReader reader2 = cmd2.ExecuteReader();
-
-                                while (reader2.Read())
-                                {
-                                    appoinment.PId = Convert.ToInt32(reader["PId"]);
-                                    appoinment.DId = Convert.ToInt32(reader["DId"]);
-                                    appoinment.Pname = Convert.ToString(reader["Pname"]);
-                                    appoinment.Dname = Convert.ToString(reader["Dname"]);
-                                    appoinment.Email = Convert.ToString(reader["Email"]);
-                                    appoinment.Photo = Convert.ToString(reader["ProfileImg"]);
-                                    appoinment.Number = Convert.ToInt32(reader["Number"]);
-                                    appoinment.Condition = Convert.ToString(reader["Condition"]);
-                                    appoinment.Visit_Time = Convert.ToDateTime(reader["VisitStartTime"]);
-                                    appoinment.Visit_End = Convert.ToDateTime(reader["VisiteEndTime"]);
-                                    appoinment.Date = Convert.ToDateTime(reader["Date"]);
-
-                                }
+                                lstAId.Add(Convert.ToInt32(reader["AId"]));
                             }
-                            else
-                            {
-                                return null;
-                            }
-
-                            lstAppoinments.Add(appoinment);
                         }
-                        con.Close();
-                        return lstAppoinments;
                     }
                     else
                     {
-                        con.Close();
+                        Console.WriteLine("GetAppoinmentList failed.");
                         return null;
                     }
-                    
-                }
-                
+
+                    //2. fetching appoinment details from appoinment table
+                    int i = 1;
+                    List<CreateApModel> lstAppoinments = new List<CreateApModel>();
+
+                    while (lstAId.Count > 0 && lstAId.Count >= i)
+                    {
+                        CreateApModel createApModel = new CreateApModel();
+                        createApModel.AId = lstAId[i - 1];
+                        createApModel.DId = DId;
+
+                        SqlCommand command = new SqlCommand("GetDocAppoinments", con);
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("AId", createApModel.AId);
+                        command.Parameters.AddWithValue("DId", DId);
+
+                        var result1 = command.ExecuteScalar();
+                        if (result1 != null)
+                        {
+                            using (SqlDataReader reader1 = command.ExecuteReader())
+                            {
+                                while (reader1.Read())
+                                {
+                                    createApModel.Photo = reader1["ProfileImg"].ToString();
+                                    createApModel.Pname = reader1["Pname"].ToString();
+                                    createApModel.Email = reader1["Email"].ToString();
+                                    createApModel.Date = Convert.ToDateTime(reader1["Date"]);
+                                    createApModel.Visit_Time = Convert.ToDateTime(reader1["VisitStartTime"]);
+                                    createApModel.Visit_End = Convert.ToDateTime(reader1["VisiteEndTime"]);
+                                    createApModel.Number = Convert.ToInt32(reader1["Number"]);
+                                    createApModel.Dname = reader1["Dname"].ToString();
+                                    createApModel.Condition = reader1["Condition"].ToString();
+                                }
+                                lstAppoinments.Add(createApModel);
+                                i++;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("GetDocAppoinments failed.");
+                            return null;
+                        }
+                    }//while end  of lstAID 
+                    return lstAppoinments;
+                }//close of connection
             }
             catch (Exception ex)
             {
@@ -97,3 +104,6 @@ namespace RepoLayer
 
     }
 }
+
+
+

@@ -74,7 +74,7 @@ namespace Hospital.Controllers
                     }
                     else if (result.Role.Equals("Doctor"))
                     {
-                        return RedirectToAction("GetAppoinments", "Doctor");
+                        return RedirectToAction("ViewAppoinmentList", "Doctor");
                     }
                     else
                     {

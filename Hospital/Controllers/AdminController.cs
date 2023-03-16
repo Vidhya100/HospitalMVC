@@ -37,7 +37,7 @@ namespace Hospital.Controllers
             //{
             //    return NotFound();
             //}
-            Appoinment appoinment = adminBL.GetApoointment(Aid);
+            CreateApModel appoinment = adminBL.GetApoointment(Aid);
 
             if (appoinment == null)
             {
@@ -46,7 +46,7 @@ namespace Hospital.Controllers
             return View(appoinment);
         }
         [HttpPost]
-        public IActionResult Edit(int Aid, [Bind] Appoinment appoinment)
+        public IActionResult Edit(int Aid, [Bind] CreateApModel appoinment)
         {
            if (Aid != appoinment.AId)
             {
@@ -67,7 +67,7 @@ namespace Hospital.Controllers
             //{
             //    return NotFound();
             //}
-            Appoinment appoinment = adminBL.GetApoointment(Aid);
+            CreateApModel appoinment = adminBL.GetApoointment(Aid);
 
             if (appoinment == null)
             {

@@ -58,16 +58,16 @@ namespace Hospital.Controllers
                 int PId = (int)HttpContext.Session.GetInt32("UserId");
                 int DId = (int)HttpContext.Session.GetInt32("DId");
                 patientsBL.CreateApoointment(DId, PId, appoinments);
-                return RedirectToAction("ViewAppoinmentList");
+                return RedirectToAction("ViewAppoinmentList", "User");
             }
             return View();
         }
         [HttpGet]
-        public IActionResult ViewAppoinmentList(CreateApModel appoinments)
+        public IActionResult ViewAppoinmentList(CreateApModel appoinment)
         {
             int PId = (int)HttpContext.Session.GetInt32("UserId");
             List<CreateApModel> lstAppoinments = new List<CreateApModel>();
-            lstAppoinments = patientsBL.ViewAppoinmentList(PId,appoinments).ToList();
+            lstAppoinments = patientsBL.ViewAppoinmentList(PId,appoinment).ToList();
             return View(lstAppoinments);
            
         }

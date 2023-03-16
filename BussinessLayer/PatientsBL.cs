@@ -37,11 +37,11 @@ namespace BussinessLayer
                 throw;
             }
         }
-        public IEnumerable<CreateApModel> ViewAppoinmentList(int PId, CreateApModel appoinments)
+        public IEnumerable<CreateApModel> ViewAppoinmentList(int PId, CreateApModel appoinment)
         {
             try
             {
-                return patientsRL.ViewAppoinmentList(PId,appoinments);
+                return patientsRL.ViewAppoinmentList(PId,appoinment);
             }
             catch
             {

@@ -15,22 +15,34 @@ namespace Hospital.Controllers
         {
             this.doctorBL = doctorBL;
         }
-        public IActionResult GetAppoinments()
-        {
-            int DId = (int)HttpContext.Session.GetInt32("UserId");
-            var role = HttpContext.Session.GetString("Role");
-            if (role == "Doctor")
-            {
-                List<Appoinment> lstappoinment = new List<Appoinment>();
-                lstappoinment = doctorBL.GetAllApoointments(DId).ToList();
+        //public IActionResult GetAppoinments()
+        //{
+        //    int DId = (int)HttpContext.Session.GetInt32("UserId");
+        //    var role = HttpContext.Session.GetString("Role");
+        //    if (role == "Doctor")
+        //    {
+        //        List<Appoinment> lstappoinment = new List<Appoinment>();
+        //        lstappoinment = doctorBL.GetAllApoointments(DId).ToList();
 
-                return View(lstappoinment);
-            }
-            else
-            {
-                return View();
-            }
+        //        return View(lstappoinment);
+        //    }
+        //    else
+        //    {
+        //        return View();
+        //    }
+        //}
+        [HttpGet]
+        public IActionResult ViewAppoinmentList(CreateApModel appoinment)
+        {
+            //1. get doctor Id 
+            int DId = (int)HttpContext.Session.GetInt32("UserId");
+            //2. fectch appointment id's for Doctor id from doctor table
+            //3. then fetch and create list of appoinments object wih details
+            List<CreateApModel> lstAppoinments = new List<CreateApModel>();
+            lstAppoinments = doctorBL.ViewAppoinmentList(DId, appoinment).ToList();
+            return View(lstAppoinments);
         }
+
 
      }
 }

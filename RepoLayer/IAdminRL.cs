@@ -8,8 +8,8 @@ namespace RepoLayer
     public interface IAdminRL
     {
         public IEnumerable<Appoinment> GetAllApoointments();
-        public Appoinment GetApoointment(int Aid);
-        public Appoinment Update(Appoinment appoinment);
+        public CreateApModel GetApoointment(int Aid);
+        public CreateApModel Update(CreateApModel appoinment);
         public bool Delete(int Aid);
     }
 }

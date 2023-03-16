@@ -7,6 +7,6 @@ namespace BussinessLayer
 {
     public interface IDoctorBL
     {
-        public IEnumerable<Appoinment> GetAllApoointments(int DId);
+        public IEnumerable<CreateApModel> ViewAppoinmentList(int DId, CreateApModel appoinment);
     }
 }

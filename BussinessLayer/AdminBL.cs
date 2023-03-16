@@ -25,7 +25,7 @@ namespace BussinessLayer
                 throw;
             }
         }
-        public Appoinment Update(Appoinment appoinment)
+        public CreateApModel Update(CreateApModel appoinment)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace BussinessLayer
                 throw;
             }
         }
-        public Appoinment GetApoointment(int Aid)
+        public CreateApModel GetApoointment(int Aid)
         {
             try
             {
