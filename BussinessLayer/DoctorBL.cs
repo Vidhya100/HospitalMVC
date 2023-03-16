@@ -15,13 +15,13 @@ namespace BussinessLayer
             this.doctorRL = doctorRL;
         }
 
-        public IEnumerable<Appoinment> GetAllApoointments(int DId)
+        public IEnumerable<CreateApModel> ViewAppoinmentList(int DId, CreateApModel appoinment)
         {
             try
             {
-                return doctorRL.GetAllApoointments(DId);
+                return doctorRL.ViewAppoinmentList(DId, appoinment);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw;
             }

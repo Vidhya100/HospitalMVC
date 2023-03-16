@@ -1,14 +1,14 @@
-﻿@model IEnumerable<ModelLayer.Appoinment>
+﻿@model IEnumerable<ModelLayer.CreateApModel>
 
 @{
-    ViewData["Title"] = "GetAppoinments";
+    ViewData["Title"] = "ViewAppoinmentList";
 }
 
-<h1>GetAppoinments</h1>
+@*<h1>ViewAppoinmentList</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
 <table class="table">
     <thead>
         <tr>
@@ -18,24 +18,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.PId)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DId)
-            </th>
-            >
+            
             <th>
                 @Html.DisplayNameFor(model => model.Photo)
             </th>
-            
             <th>
                 @Html.DisplayNameFor(model => model.Pname)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Dname)
-            </th>
-            
-            
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Date)
@@ -47,9 +38,11 @@
                 @Html.DisplayNameFor(model => model.Visit_End)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Number)
             </th>
-            
             <th>
                 @Html.DisplayNameFor(model => model.Condition)
             </th>
@@ -65,22 +58,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PId)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DId)
-            </td>
+           
             <td>
                  <img src="@Url.Content(item.Photo)"/>
             </td>
-            
             <td>
                 @Html.DisplayFor(modelItem => item.Pname)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Dname)
-            </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
@@ -92,23 +78,18 @@
                 @Html.DisplayFor(modelItem => item.Visit_End)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Number)
             </td>
-           
             <td>
                 @Html.DisplayFor(modelItem => item.Condition)
             </td>
             <td>
-                <a class="icon-grp" href="@Url.Action("Edit", "Admin", new { Aid = item.AId })">
-                    <i class="fas fa-pencil"></i>
-                </a>
                @* @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-
-                <a class="icon-grp delete" href="@Url.Action("Delete", "Delete", new { Aid = item.AId })">
-                         <i class="fas fa-trash"></i>
-                </a>
             </td>
         </tr>
 }

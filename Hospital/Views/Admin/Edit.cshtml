@@ -1,82 +1,86 @@
-﻿@model ModelLayer.Appoinment
+﻿@model ModelLayer.CreateApModel
 
 @{
     ViewData["Title"] = "Edit";
 }
 <link rel="stylesheet" href="~/css/Regi.css" />
 
+@*<h1>Edit</h1>
 
-
-@*<h4>Appoinment</h4>
+<h4>CreateApModel</h4>
 <hr />*@
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <h3>Edit Appoinment</h3>
             <div class="form-group">
-               @* <label asp-for="AId" class="control-label"></label>*@
-                <input asp-for="AId" class="form-control" readonly type="hidden" />
+                @*<label asp-for="AId" class="control-label"></label>*@
+                <input asp-for="AId" class="form-control" readonly type="hidden"/>
                 <span asp-validation-for="AId" class="text-danger"></span>
             </div>
             <div class="form-group">
+               @* <label asp-for="PId" class="control-label"></label>*@
+                <input asp-for="PId" class="form-control" readonly type="hidden"/>
+                <span asp-validation-for="PId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="DId" class="control-label"></label>*@
+                <input asp-for="DId" class="form-control" readonly type="hidden"/>
+                <span asp-validation-for="DId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 @*<label asp-for="Photo" class="control-label"></label>*@
-                @*<img src="@Url.Content(Photo)"/>*@
+                <input asp-for="Photo" class="form-control" readonly type="hidden"/>
                 <span asp-validation-for="Photo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*<label asp-for="Name" class="control-label"></label>*@
-                <input asp-for="Pname" class="form-control" placeholder="Name"/>
+                @*<label asp-for="Pname" class="control-label"></label>*@
+                <input asp-for="Pname" class="form-control" />
                 <span asp-validation-for="Pname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*<label asp-for="Doctor" class="control-label"></label>*@
-                <input asp-for="Dname" class="form-control" readonly placeholder="Doctor"/>
+                @*<label asp-for="Dname" class="control-label"></label>*@
+                <input asp-for="Dname" class="form-control" readonly/>
                 <span asp-validation-for="Dname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*<label asp-for="Email" class="control-label"></label>*@
-                <input asp-for="Email" class="form-control" placeholder="Email"/>
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 @*<label asp-for="Date" class="control-label"></label>*@
-                <input asp-for="Date" class="form-control" placeholder="Date"/>
+                <input asp-for="Date" class="form-control" />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-group">
                 @*<label asp-for="Visit_Time" class="control-label"></label>*@
-                <input asp-for="Visit_Time" class="form-control" placeholder="Visit_Time"/>
+                <input asp-for="Visit_Time" class="form-control" />
                 <span asp-validation-for="Visit_Time" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*<label asp-for="Visit_Time" class="control-label"></label>*@
-                <input asp-for="Visit_Time" class="form-control" placeholder="Visit_End"/>
-                <span asp-validation-for="Visit_Time" class="text-danger"></span>
+               @* <label asp-for="Visit_End" class="control-label"></label>*@
+                <input asp-for="Visit_End" class="form-control" />
+                <span asp-validation-for="Visit_End" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*<label asp-for="Number" class="control-label"></label>*@
-                <input asp-for="Number" class="form-control" placeholder="Number"/>
+               @* <label asp-for="Email" class="control-label"></label>*@
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+              @*  <label asp-for="Number" class="control-label"></label>*@
+                <input asp-for="Number" class="form-control" />
                 <span asp-validation-for="Number" class="text-danger"></span>
             </div>
-            
             <div class="form-group">
                 @*<label asp-for="Condition" class="control-label"></label>*@
-                <input asp-for="Condition" class="form-control" placeholder=Condition/>
+                <input asp-for="Condition" class="form-control" />
                 <span asp-validation-for="Condition" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="cancle" value="cancle" class="btn btn-danger" />
-                <input type="submit" value="Edit Appoinment" class="btn btn-primary" />
-            </div>
+            <a ap-action="GetAppoinments">
+                    <input type="submit" value="Edit Appoinment" class="btn btn-primary" />
+            </a>
         </form>
     </div>
 </div>
 
-@*<div>
+<div>
     <a asp-action="Index">Back to List</a>
-</div>*@
+</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

@@ -61,11 +61,11 @@ namespace RepoLayer
             }
         }
 
-        public Appoinment GetApoointment(int Aid)
+        public CreateApModel GetApoointment(int Aid)
         {
             try
             {
-                Appoinment appoinments = new Appoinment();
+                CreateApModel appoinments = new CreateApModel();
                 using (SqlConnection con = new SqlConnection(this.iconfiguration.GetConnectionString("Hospital")))
                 {
                     SqlCommand cmd = new SqlCommand("spAppoinmentDetails", con);
@@ -75,7 +75,7 @@ namespace RepoLayer
                     con.Open();
                     cmd.Parameters.AddWithValue("AId", Aid);
                     SqlDataReader reader = cmd.ExecuteReader();
-                    Appoinment appoinment = new Appoinment();
+                    CreateApModel appoinment = new CreateApModel();
                     while (reader.Read())
                     {
 
@@ -105,7 +105,7 @@ namespace RepoLayer
         }
 
 
-        public Appoinment Update(Appoinment appoinment)
+        public CreateApModel Update(CreateApModel appoinment)
         {
             try
             {
@@ -115,14 +115,16 @@ namespace RepoLayer
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@AId", appoinment.AId);
-                    cmd.Parameters.AddWithValue("@PId", appoinment.PId);
-                    cmd.Parameters.AddWithValue("@DId", appoinment.DId);
+                    //cmd.Parameters.AddWithValue("@PId", appoinment.PId);
+                    //cmd.Parameters.AddWithValue("@DId", appoinment.DId);
                     cmd.Parameters.AddWithValue("@ProfileImg", appoinment.Photo);
                     cmd.Parameters.AddWithValue("@Pname", appoinment.Pname);
+                    cmd.Parameters.AddWithValue("@Email", appoinment.Email);
                     cmd.Parameters.AddWithValue("@Dname", appoinment.Dname);
                     cmd.Parameters.AddWithValue("@Date", appoinment.Date);
-                    cmd.Parameters.AddWithValue("@VisitTime", appoinment.Visit_Time);
-                    cmd.Parameters.AddWithValue("@VisitEnd", appoinment.Visit_End);
+                    cmd.Parameters.AddWithValue("@VisitStartTime", appoinment.Visit_Time);
+                    cmd.Parameters.AddWithValue("@VisiteEndTime", appoinment.Visit_End);
+                    cmd.Parameters.AddWithValue("@Number", appoinment.Number);
                     cmd.Parameters.AddWithValue("@Condition", appoinment.Condition);
 
                     con.Open();

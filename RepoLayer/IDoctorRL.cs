@@ -7,6 +7,6 @@ namespace RepoLayer
 {
     public interface IDoctorRL
     {
-        public IEnumerable<Appoinment> GetAllApoointments(int DId);
+        public IEnumerable<CreateApModel> ViewAppoinmentList(int DId, CreateApModel appoinment);
     }
 }
