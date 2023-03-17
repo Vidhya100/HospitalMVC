@@ -143,24 +143,25 @@ end
 -----doctor table
 create table Doctor
 (
-	Id int,
+	Id int Identity,
 	DId int,
 	primary key(Id,DId),
-	ishide bit default 0,
-	AId Int foreign key(AId) references Appointments(AId)
+	AId Int foreign key(AId) references Appointments(AId),
+	isHide bit default 0
 )
 ----Patient table
 create table Patient
 (
-	Id int,
+	Id int identity,
 	PId int,
 	primary key(Id,PId),
-	ishide bit default 0,
-	AId Int foreign key(AId) references Appointments(AId)
+	AId Int foreign key(AId) references Appointments(AId),
+	isHide bit default 0
 )
 
 select* from Doctor;
 drop table Doctor
+drop table Patient
 
 ---Add AId in doctor table
 create or alter procedure spDoctorAppointment(
@@ -202,7 +203,7 @@ create or alter procedure GetPAppoinmentList
 )
 as
 begin
-	 select AId from Patient where PId = @PId and isHide=0;  
+	 select AId from Patient where PId = @PId  
 end
 ---get appoinment details from appoinment where AId and PId given
 create or alter  procedure GetPatientAppoinments  
@@ -233,7 +234,7 @@ create or alter  procedure GetAppoinmentList
 )  
 as   
 begin  
- select AId from Doctor where DId = @DId and isHide=0;  
+ select AId from Doctor where DId = @DId ;  
 end
 ---get appoinment details from appoinments where Aid and Did given
 create or alter  procedure GetDocAppoinments  
@@ -291,6 +292,8 @@ select * from Appointments
 
 alter table Doctor Add column isHide bit default 0
 alter table Patient Add column isHide bit default 0
+
+alter table Doctor Drop column isHide
 
 exec sp_helptext 'GetPAppoinmentList'
 exec sp_helptext 'GetPatientAppoinments'
