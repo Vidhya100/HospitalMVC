@@ -67,6 +67,7 @@ namespace Hospital.Controllers
             //{
             //    return NotFound();
             //}
+            HttpContext.Session.SetInt32("AId", Aid);
             CreateApModel appoinment = adminBL.GetApoointment(Aid);
 
             if (appoinment == null)
@@ -78,9 +79,10 @@ namespace Hospital.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int Aid)
+        public IActionResult DeleteConfirmed()
         {
-            adminBL.Delete(Aid);
+            int AId = (int)HttpContext.Session.GetInt32("AId");
+            adminBL.Delete(AId);
             return RedirectToAction("GetAppoinments");
         }
 

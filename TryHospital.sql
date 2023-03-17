@@ -180,7 +180,7 @@ create or alter procedure GetAppoinmentList
 )
 as 
 begin
-	select AId from Doctor where DId = @DId;
+	select AId from Doctor where DId = @DId 
 end
 
 ----insert values in doctor and patient table
@@ -203,7 +203,7 @@ create or alter procedure GetPAppoinmentList
 )
 as
 begin
-	 select AId from Patient where PId = @PId  
+	 select AId from Patient where PId = @PId 
 end
 ---get appoinment details from appoinment where AId and PId given
 create or alter  procedure GetPatientAppoinments  
@@ -276,7 +276,7 @@ begin
 end
 
 --for removing from Ui but stored in database used flags
-create or alter  procedure spDelete  
+create or alter  procedure spRemove  
 (  
  @AId int  
 )  
@@ -286,12 +286,26 @@ begin
   Update Patient Set  isHide=1 where AId = @AId;  
 end
 
+---for deleting permenantly
+create or alter procedure spDelete
+(
+	@AId int 
+)
+as
+begin
+		begin
+			delete from Patient where AId=@AId
+			delete from Doctor where AId=@AId
+		end
+			delete from Appointments Where AId=@AId
+end
+
 select *from Doctor
 select * from Patient
 select * from Appointments
 
-alter table Doctor Add column isHide bit default 0
-alter table Patient Add column isHide bit default 0
+alter table Doctor Add isHide int DEFAULT 0
+alter table Patient Add isHide int DEFAULT 0
 
 alter table Doctor Drop column isHide
 

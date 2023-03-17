@@ -58,7 +58,7 @@ namespace Hospital.Controllers
                 int PId = (int)HttpContext.Session.GetInt32("UserId");
                 int DId = (int)HttpContext.Session.GetInt32("DId");
                 patientsBL.CreateApoointment(DId, PId, appoinments);
-                return RedirectToAction("ViewAppoinmentList", "User");
+                return RedirectToAction("ViewAppoinmentList");
             }
             return View();
         }

@@ -292,7 +292,7 @@ namespace RepoLayer
                         }
                         else
                         {
-                            Console.WriteLine("GetDocAppoinments failed.");
+                            Console.WriteLine("GetPAppoinmentList failed.");
                             return null;
                         }
                     }//while end  of lstAID 
