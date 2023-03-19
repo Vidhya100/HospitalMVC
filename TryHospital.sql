@@ -74,7 +74,7 @@ create table Appointments
 	Dname varchar(250),
 	ProfileImg varchar(250),
 	Email varchar(250),
-	Date Date,
+	Date Datetime,
 	VisitStartTime datetime,
 	VisiteEndTime datetime,
 	Number bigint,
@@ -88,25 +88,28 @@ drop table Appointments
 create or alter procedure spCreateAppointments
 (
 	
-	@DId int,
+	
 	@PId int,
+	@DId int,
 
 	@Pname varchar(250),
 	@Dname varchar(250),
 	@ProfileImg varchar(250),
 	@Email varchar(250),
-	@Date Date,
+	@Date Datetime,
 	@VisitStartTime datetime,
 	@VisiteEndTime datetime,
 	@Number bigint,
-	@Condition varchar(250)
+	@Condition varchar(250),
+	@isHide int
 )
 as 
 begin
 	Insert into Appointments values (
 	
-	@DId ,
+
 	@PId,
+	@DId ,
 	@Pname,
 	@Dname,
 	@ProfileImg ,
@@ -115,10 +118,12 @@ begin
 	@VisitStartTime ,
 	@VisiteEndTime ,
 	@Number ,
-	@Condition )
+	@Condition,
+	@isHide
+	 )
 end
 
---get Apppointment Id from Appointment table for doctor
+--get Apppointment Id from Appointment table for doctor and patient
 create or alter procedure spGetAppointmentID
 (
 	
@@ -127,7 +132,7 @@ create or alter procedure spGetAppointmentID
 )
 as 
 begin
-	Select AId from Appointments where PId=@PId and DId = @DId
+	Select AId from Appointments where DId=@DId and PId = @PId
 end
 
 --Get All appointment details 
@@ -162,6 +167,7 @@ create table Patient
 select* from Doctor;
 drop table Doctor
 drop table Patient
+drop table Appointments
 
 ---Add AId in doctor table
 create or alter procedure spDoctorAppointment(
@@ -188,12 +194,14 @@ create or alter procedure spDPAppointment
 (	
 	@AId int,
 	@DId int,
-	@PId int
+	@PId int,
+	@isHide int
 )
 as
 begin
-	insert into Doctor values(@DId,@AId)
-	insert into Patient values(@PId,@AId)
+
+	insert into Doctor values(@DId,@AId,@isHide)
+	insert into Patient values(@PId,@AId,@isHide)
 end
 
 ---get Aid from patient where PId=PId and not hide
@@ -203,7 +211,7 @@ create or alter procedure GetPAppoinmentList
 )
 as
 begin
-	 select AId from Patient where PId = @PId 
+	 select AId from Patient where PId = @PId and isHide=0
 end
 ---get appoinment details from appoinment where AId and PId given
 create or alter  procedure GetPatientAppoinments  
@@ -234,7 +242,7 @@ create or alter  procedure GetAppoinmentList
 )  
 as   
 begin  
- select AId from Doctor where DId = @DId ;  
+ select AId from Doctor where DId = @DId  and isHide=0;  
 end
 ---get appoinment details from appoinments where Aid and Did given
 create or alter  procedure GetDocAppoinments  
@@ -251,9 +259,10 @@ end
 create or alter  procedure GetAllAppoinments  
 as  
 begin  
- select AId,DId,PId,ProfileImg,Pname,Email,Date,VisitStartTime,VisiteEndTime,Dname,Number,Condition from Appointments  
+ select AId,DId,PId,ProfileImg,Pname,Email,Date,VisitStartTime,VisiteEndTime,Dname,Number,Condition from Appointments  where isHide=0
 end
 
+--select  AId,DId,PId,ProfileImg,Pname,Email,Date,VisitStartTime,VisiteEndTime,Dname,Number,Condition from Appointments where isHide=0
 ---update details of Appoinment
 create or alter  procedure spUpdate  
 (  
@@ -283,7 +292,8 @@ create or alter  procedure spRemove
 as  
 begin  
   Update Doctor Set  isHide=1 where AId = @AId;  
-  Update Patient Set  isHide=1 where AId = @AId;  
+  Update Patient Set  isHide=1 where AId = @AId; 
+  Update Appointments Set  isHide=1 where AId = @AId; 
 end
 
 ---for deleting permenantly
@@ -306,8 +316,14 @@ select * from Appointments
 
 alter table Doctor Add isHide int DEFAULT 0
 alter table Patient Add isHide int DEFAULT 0
+alter table Appointments Add isHide int DEFAULT 0
 
 alter table Doctor Drop column isHide
+
+insert into doctor(DId,AId) values(4,15)
+insert into Patient(PId,AId) values(2,15)
+
+delete from Patient where PId = 2 and AId = 16
 
 exec sp_helptext 'GetPAppoinmentList'
 exec sp_helptext 'GetPatientAppoinments'

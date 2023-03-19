@@ -86,6 +86,7 @@ namespace RepoLayer
                     cmd.Parameters.AddWithValue("Condition", appoinments.Condition);
                     cmd.Parameters.AddWithValue("Number", appoinments.Number);
                     cmd.Parameters.AddWithValue("Email", appoinments.Email);
+                    cmd.Parameters.AddWithValue("isHide", 0);
 
                     var result = cmd.ExecuteNonQuery();
                     //con.Close();
@@ -118,6 +119,7 @@ namespace RepoLayer
                             cmd1.Parameters.AddWithValue("AId", appoinments.AId);
                             cmd1.Parameters.AddWithValue("DId", DId);
                             cmd1.Parameters.AddWithValue("PId", PId);
+                            cmd1.Parameters.AddWithValue("isHide", 0);
                             var result1 = cmd1.ExecuteNonQuery();
                             //con.Close();
                             if (result1 != 0)
