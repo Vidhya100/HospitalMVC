@@ -106,7 +106,7 @@
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
 
-                <a class="icon-grp delete" href="@Url.Action("Delete", "Delete", new { Aid = item.AId })">
+                <a class="icon-grp delete" href="@Url.Action("Delete", "Admin", new { Aid = item.AId })">
                          <i class="fas fa-trash"></i>
                 </a>
             </td>

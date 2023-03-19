@@ -48,6 +48,7 @@ namespace RepoLayer
                         appoinment.Number = Convert.ToInt32(reader["Number"]);
                         appoinment.Dname = reader["Dname"].ToString();
                         appoinment.Condition = reader["Condition"].ToString();
+                        //appoinment.isHide = Convert.ToInt32(reader["isHide"]);
 
                         lstAppoinments.Add(appoinment);
                     }
@@ -153,7 +154,7 @@ namespace RepoLayer
             {
                 using (SqlConnection con = new SqlConnection(this.iconfiguration.GetConnectionString("Hospital")))
                 {
-                    SqlCommand cmd = new SqlCommand("spDelete", con);
+                    SqlCommand cmd = new SqlCommand("spRemove", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@AId", Aid);

@@ -39,6 +39,7 @@ namespace ModelLayer
         public int Number { get; set; }
         [Required(ErrorMessage = "Please enter name")]
         public string Condition { get; set; }
+        public int isHide { get; set; }
         
     }
 }
