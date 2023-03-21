@@ -312,7 +312,10 @@ end
 
 select *from Doctor
 select * from Patient
-select * from Appointments
+select * from Appointments 
+select * from Register
+
+delete from Register where UserId=5
 
 alter table Doctor Add isHide int DEFAULT 0
 alter table Patient Add isHide int DEFAULT 0

@@ -1,4 +1,4 @@
-﻿.col-md-4 {
+﻿/*.col-md-12 {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -21,7 +21,7 @@
 }
 
 .save-btn {
-    //align-items:center;
+    align-items:center;
     padding-left: 130px;
 }
 
@@ -34,3 +34,5 @@ inputs {
     flex-direction: column;
     gap: 50px;
 }
+
+*/

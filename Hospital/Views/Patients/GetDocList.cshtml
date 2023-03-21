@@ -1,66 +1,41 @@
-﻿@model IEnumerable<ModelLayer.Doctor>
+﻿@model  IEnumerable<ModelLayer.Doctor>
 
 @{
-    ViewData["Title"] = "GetDocList";
+    ViewData["Title"] = "GetDocListTry";
 }
+<link rel="stylesheet" href="~/css/doclist.css" />
 
-<h1>GetDocList</h1>
+<h1 class="text-center text-primary">Doctors</h1>
 
 <p>
-    <a asp-action="ViewAppoinmentList">View Appoinments</a>
+    <a class="btn btn-primary" asp-action="ViewAppoinmentList">View Appoinments</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Photo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Dname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Degree)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            
-           
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+
+<div class="doclist">
 @foreach (var item in Model) {
-        <tr>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.DId)
-            </td>
-            <td>
-                <img src="@Url.Content(item.Photo)"/>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Degree)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @*<a asp-action="GetDocList">
-                   <input type="submit" value="Take Appoinment" class="btn btn-primary" />
-                </a>*@
-                <a class="icon-grp" href="@Url.Action("GetAppointmentId", "Patients", new { DId = item.DId , Dname=item.Dname})">
+    <div class="doc-details">
+           <div ><img class="pImg" src="@Url.Content(item.Photo)"/></div>
+        <div class="details">
+            <div class="dname">
+                <h2 class="Dname">@item.Dname</h2>
+            </div>
+            <div class="degree">
+                <span class="Degree"> @item.Degree</span>
+            </div>            
+       
+            <div class="social-icons">
+                   <img class="Profile-img-1" src="~/assets/icons/instagram.png"  />
+                    <img class="Profile-img-1" src="~/assets/icons/facebook.png"  />
+                   <img class="Profile-img-1" src="~/assets/icons/twiter.png"  />
+            </div>
+            <span class="address">@item.Address</span>
+        
+            <div class="appoinment-btn">
+                <a class="btn btn-primary" href="@Url.Action("GetAppointmentId", "Patients", new { DId = item.DId , Dname=item.Dname})">
                     Take Appoinment
                 </a>
-                
-            </td>
-        </tr>
+            </div>
+       </div>        
+   </div>
 }
-    </tbody>
-</table>
+</div>

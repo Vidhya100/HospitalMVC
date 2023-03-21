@@ -6,10 +6,10 @@
 }
 <link rel="stylesheet" href="~/css/Regi.css" />
 
-<h1>CreateApoointment</h1>
+<h1 class="text-center text-primary">Create Apoointment</h1>
 
-<h4>CreateApModel</h4>
-<hr />
+@*<h4>CreateApModel</h4>
+<hr />*@
 <div class="row">
     <div class="col-md-12">
         <form asp-action="CreateApoointment">
@@ -51,23 +51,23 @@
             </div>
             <div class="form-group">
                 @*<label asp-for="Pname" class="control-label"></label>*@
-                <input asp-for="Pname" class="form-control" placeholder=Fullname/>
+                <input asp-for="Pname" class="form-control" placeholder="Fullname"/>
                 <span asp-validation-for="Pname" class="text-danger"></span>
             </div>
              
             <div class="form-group">
                @* <label asp-for="Date" class="control-label"></label>*@
-                <input asp-for="Date" class="form-control" />
+                <input asp-for="Date" class="form-control" placeholder="Date"/>
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-group">
                 @*<label asp-for="Visit_Time" class="control-label"></label>*@
-                <input asp-for="Visit_Time" class="form-control" />
+                <input asp-for="Visit_Time" class="form-control" placeholder="Visit Start Time"/>
                 <span asp-validation-for="Visit_Time" class="text-danger"></span>
             </div>
             <div class="form-group">
                 @*<label asp-for="Visit_End" class="control-label"></label>*@
-                <input asp-for="Visit_End" class="form-control" />
+                <input asp-for="Visit_End" class="form-control" placeholder="Visit End Time"/>
                 <span asp-validation-for="Visit_End" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -78,8 +78,8 @@
             </div>
             <div class="form-group">
                @* <label asp-for="Number" class="control-label"></label>*@
-                <input asp-for="Number" class="form-control" />
-                <span asp-validation-for="Number" class="text-danger" placeholder="1452365425"></span>
+                <input asp-for="Number" class="form-control" placeholder="Mobile Number"/>
+                <span asp-validation-for="Number" class="text-danger" ></span>
             </div>
             <div class="form-group">
                @* <label asp-for="Condition" class="control-label"></label>*@

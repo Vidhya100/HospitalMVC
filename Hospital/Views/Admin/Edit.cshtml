@@ -3,10 +3,10 @@
 @{
     ViewData["Title"] = "Edit";
 }
-<link rel="stylesheet" href="~/css/Regi.css" />
+<link rel="stylesheet" href="~/css/Edit.css" />
 
-@*<h1>Edit</h1>
-
+<h1 class="text-center text-primary">Edit Details</h1>
+@*
 <h4>CreateApModel</h4>
 <hr />*@
 <div class="row">
@@ -34,42 +34,49 @@
                 <span asp-validation-for="Photo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*<label asp-for="Pname" class="control-label"></label>*@
+                <label asp-for="Pname" class="control-label">Patient Name</label>
                 <input asp-for="Pname" class="form-control" />
                 <span asp-validation-for="Pname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*<label asp-for="Dname" class="control-label"></label>*@
+                <label asp-for="Dname" class="control-label">Doctor Name</label>
                 <input asp-for="Dname" class="form-control" readonly/>
                 <span asp-validation-for="Dname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*<label asp-for="Date" class="control-label"></label>*@
-                <input asp-for="Date" class="form-control" />
+                <label asp-for="Date" class="control-label">Date</label>
+                <input asp-for="Date" class="form-control"/>
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
+            @*<div class="form-group">
+                 <label asp-for="Visit_Time" class="control-label">Visit Time</label>
+                   <input asp-for="Visit_Time" class="form-control" />
+                   <input asp-for="Visit_End" class="form-control" />
+                 <span asp-validation-for="Visit_End" class="text-danger"></span>
+            </div>*@
+
             <div class="form-group">
-                @*<label asp-for="Visit_Time" class="control-label"></label>*@
+                <label asp-for="Visit_Time" class="control-label">Visit Start Time</label>
                 <input asp-for="Visit_Time" class="form-control" />
                 <span asp-validation-for="Visit_Time" class="text-danger"></span>
             </div>
             <div class="form-group">
-               @* <label asp-for="Visit_End" class="control-label"></label>*@
+                <label asp-for="Visit_End" class="control-label">Visit End Time</label>
                 <input asp-for="Visit_End" class="form-control" />
                 <span asp-validation-for="Visit_End" class="text-danger"></span>
             </div>
             <div class="form-group">
-               @* <label asp-for="Email" class="control-label"></label>*@
+                <label asp-for="Email" class="control-label">Email <span></span> <span></span></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-              @*  <label asp-for="Number" class="control-label"></label>*@
+                <label asp-for="Number" class="control-label">Mobile Number</label>
                 <input asp-for="Number" class="form-control" />
                 <span asp-validation-for="Number" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*<label asp-for="Condition" class="control-label"></label>*@
+                <label asp-for="Condition" class="control-label">Condition</label>
                 <input asp-for="Condition" class="form-control" />
                 <span asp-validation-for="Condition" class="text-danger"></span>
             </div>
@@ -80,7 +87,11 @@
     </div>
 </div>
 
-<div>
+@*<div>
     <a asp-action="Index">Back to List</a>
-</div>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 

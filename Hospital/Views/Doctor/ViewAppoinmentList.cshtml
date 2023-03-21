@@ -3,8 +3,9 @@
 @{
     ViewData["Title"] = "ViewAppoinmentList";
 }
+<link rel="stylesheet" href="~/css/Regi.css" />
 
-<h1>Appoinments</h1>
+<h1 class="text-center text-primary">Appoinments</h1>
 
 @*<p>
     <a asp-action="Create">Create New</a>
@@ -16,9 +17,9 @@
                 @Html.DisplayNameFor(model => model.AId)
             </th>
             
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.DId)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Photo)
             </th>
@@ -56,9 +57,9 @@
                 @Html.DisplayFor(modelItem => item.AId)
             </td>
            
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.DId)
-            </td>
+            </td>*@
             <td>
                  <img src="@Url.Content(item.Photo)"/>
             </td>
