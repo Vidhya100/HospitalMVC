@@ -16,9 +16,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.AId)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.PId)
-            </th>
+            </th>*@
             
             <th>
                 @Html.DisplayNameFor(model => model.Photo)
@@ -56,9 +56,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.AId)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.PId)
-            </td>
+            </td>*@
            
             <td>
                  <img src="@Url.Content(item.Photo)"/>
