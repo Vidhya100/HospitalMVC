@@ -3,9 +3,10 @@
 @{
     ViewData["Title"] = "ViewAppoinmentList";
 }
+<link rel="stylesheet" href="~/css/Regi.css" />
 
-@*<h1>ViewAppoinmentList</h1>
-
+<h1 class="text-center text-primary" >Appoinments</h1>
+@*
 <p>
     <a asp-action="Create">Create New</a>
 </p>*@
@@ -15,27 +16,31 @@
             <th>
                 @Html.DisplayNameFor(model => model.AId)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.PId)
-            </th>
+            </th>*@
             
             <th>
                 @Html.DisplayNameFor(model => model.Photo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pname)
+                Name
+                @*@Html.DisplayNameFor(model => model.Pname)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Dname)
+                Doctor
+               @* @Html.DisplayNameFor(model => model.Dname)*@
             </th>
-            <th>
+            <th width=130px>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Visit_Time)
+            <th width=150px>
+                Visit Start Time
+                @*@Html.DisplayNameFor(model => model.Visit_Time)*@
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Visit_End)
+            <th width=150px> 
+                Visit End Time
+                @*@Html.DisplayNameFor(model => model.Visit_End)*@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
@@ -55,12 +60,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.AId)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.PId)
-            </td>
+            </td>*@
            
             <td>
-                 <img src="@Url.Content(item.Photo)"/>
+                 <img src="~/assets/patient-img/@item.Photo" width=40 height=40/>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Pname)

@@ -1,0 +1,45 @@
+﻿.doclist {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    /*width: 700px;*/
+    /*margin-left: 100px;*/
+    gap: 5px 3px;
+    /*border: 1px solid black;*/
+    /*//overflow-x:hidden;*/
+}
+.doc-details {
+    /*border: 1px solid black;*/
+    margin: 15px;
+    width: 350px;
+    align-items: center;
+}
+.details{
+    align-items:center;
+    margin:5px 25px 5px 25px;
+}
+.pImg{
+    height:320px;
+    width:300px;
+}
+.dname{
+    padding-left:30px;
+}
+.degree{
+    padding-left:60px;
+    padding-bottom:8px;
+}
+.social-icons {
+    padding-left: 55px;
+    padding-bottom: 15px;
+}
+.address {
+    padding-left: 45px;
+    padding-bottom: 15px;
+}
+.appoinment-btn {
+    padding-left: 35px;
+}
+p{
+    margin-left:15px;
+}

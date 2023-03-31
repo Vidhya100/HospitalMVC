@@ -21,8 +21,9 @@
 .btn{
     cursor:pointer;
     width: 150px;
+    
 }
-.input {
+input {
 /*    padding-left: 25px;*/
     background-color: #E5E4E2;
 }
@@ -31,15 +32,15 @@
     flex-direction: column;
     gap:50px;
 }
-.thead{
-    background-color:#D9DDDC;
+thead {
+    background-color: #D3D3D3;
 }
 .appoinment{
     color:#808080;
 }
-.tr{
-    background-color:#F5F5F5;
-    margin-top:5px;
+td {
+    background-color: #F8F8FF;
+    margin-top: 5px;
 }
 table {
     border-collapse: separate;
@@ -57,3 +58,16 @@ table {
 .delete{
     background-color:red;
 }
+.Profile-img {
+    width: 55px;
+    height: 55px;
+ 
+}
+.action {
+    width:100px;
+}
+.grp {
+    display: flex;
+    flex-direction: column;
+}
+

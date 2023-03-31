@@ -15,6 +15,7 @@ namespace Hospital.Controllers
         {
             this.adminBL = adminBL;
         }
+        //[Route("/Appointment")]
         public IActionResult GetAppoinments()
         {
             var role = HttpContext.Session.GetString("Role");

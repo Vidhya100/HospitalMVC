@@ -1,4 +1,5 @@
-﻿using Microsoft.OData.Edm;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.OData.Edm;
 using Org.BouncyCastle.Asn1.Cms;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,10 @@ namespace ModelLayer
     {
         
         public int AId { get; set; }
+        [HiddenInput(DisplayValue = false)]
         public int PId { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         public int DId { get; set; }
 
         [Required(ErrorMessage = "Please enter name")]

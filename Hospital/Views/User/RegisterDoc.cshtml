@@ -14,9 +14,9 @@
         <form asp-action="RegisterDoc">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                   <div class="Admin/Patients">
-                       <a asp-action="RegisterAp" > 
-                           <input value="Admin/Patient" class="btn btn-primary" />
+                   <div class="RegisterAP mr-1">
+                       <a asp-action="RegisterAp " > 
+                           <input value="Admin/Patient" class="btn btn-primary " />
                        </a>
                    </div>
                    <div class="Doc">
@@ -40,16 +40,16 @@
             </div>
             <div class="form-group">
                 @*<label asp-for="Photo" class="control-label"></label>*@
-                    <div>
-                        @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/Ellipse -1.png")
-                        <img class="Profile-img-1" src="~/assets/profile-images/Ellipse -1.png"  />
-                        @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/Ellipse -3.png")
-                        <img class="Profile-img-1" src="~/assets/profile-images/Ellipse -3.png"  />
-                        @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/Ellipse -2.png")
-                        <img class="Profile-img-1" src="~/assets/profile-images/Ellipse -2.png"  />
-                        @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/Ellipse -5.png")
-                        <img class="Profile-img-1" src="~/assets/profile-images/Ellipse -5.png"  />
-                    </div>                
+                   <div>
+                        @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/doc-1.jpg")
+                        <img class="Profile-img" src="~/assets/profile-images/doc-1.jpg"/>
+                        @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/doc-2.jpg")
+                        <img class="Profile-img" src="~/assets/profile-images/doc-2.jpg"  />
+                        @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/doc-5.jpg")
+                        <img class="Profile-img" src="~/assets/profile-images/doc-5.jpg"  />
+                        @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/doc-6.jpg")
+                        <img class="Profile-img" src="~/assets/profile-images/doc-6.jpg"  />
+                    </div>             
                 <span asp-validation-for="Photo" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -78,8 +78,8 @@
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <a asp-action="Login">
-                    <input type="submit" value="SignUp" class="btn btn-primary" />
+                <a asp-action="Login" class="signup mr-1">
+                    <input type="submit" value="SignUp" class="btn btn-primary " />
                  </a>
                 <a asp-action="Login">
                 <input value="SignIn" class="btn btn-primary" />

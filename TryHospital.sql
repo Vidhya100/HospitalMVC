@@ -83,6 +83,7 @@ create table Appointments
 )
 
 drop table Appointments
+ALTER TABLE Appointments ALTER COLUMN ProfileImg nvarchar(max);
 
 ---create new appointment by inserting data
 create or alter procedure spCreateAppointments
@@ -312,7 +313,10 @@ end
 
 select *from Doctor
 select * from Patient
-select * from Appointments
+select * from Appointments 
+select * from Register
+
+delete from Register where UserId=13
 
 alter table Doctor Add isHide int DEFAULT 0
 alter table Patient Add isHide int DEFAULT 0
