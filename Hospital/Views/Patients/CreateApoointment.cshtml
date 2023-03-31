@@ -6,13 +6,13 @@
 }
 <link rel="stylesheet" href="~/css/Regi.css" />
 
-<h1 class="text-center text-primary">Create Apoointment</h1>
+<h1 class="text-center text-primary">Create Appoinment</h1>
 
 @*<h4>CreateApModel</h4>
 <hr />*@
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="CreateApoointment">
+        <form asp-action="CreateApoointment" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                @* <label asp-for="AId" class="control-label"></label>*@
@@ -35,9 +35,9 @@
                 <span asp-validation-for="Dname" class="text-danger"></span>
             </div>
            
-            <div class="form-group">
+           @* <div class="form-group">
                 @*<label asp-for="Photo" class="control-label"></label>*@
-                   <div>
+                   @*<div>
                         @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/Ellipse -1.png")
                         <img class="Profile-img-1" src="~/assets/profile-images/Ellipse -1.png"  />
                         @Html.RadioButtonFor(model => model.Photo, "~/assets/profile-images/Ellipse -3.png")
@@ -48,6 +48,11 @@
                         <img class="Profile-img-1" src="~/assets/profile-images/Ellipse -5.png"  />
                     </div>             
                 <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>*@
+            <div class="form-group grp">
+                <label asp-for="ProfileImg" class="control-label"><b>Upload Image</b></label>
+                <input asp-for="ProfileImg" class="form-control" />
+                <span asp-validation-for="ProfileImg" class="text-danger"></span>
             </div>
             <div class="form-group">
                 @*<label asp-for="Pname" class="control-label"></label>*@
@@ -55,18 +60,18 @@
                 <span asp-validation-for="Pname" class="text-danger"></span>
             </div>
              
-            <div class="form-group">
-               @* <label asp-for="Date" class="control-label"></label>*@
+            <div class="form-group grp">
+                <label asp-for="Date" class="control-label" style="margin-right:10px;"><b>Date</b></label>
                 <input asp-for="Date" class="form-control" placeholder="Date"/>
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                @*<label asp-for="Visit_Time" class="control-label"></label>*@
+            <div class="form-group grp">
+                <label asp-for="Visit_Time" class="control-label"><b>Visit Start Time</b></label>
                 <input asp-for="Visit_Time" class="form-control" placeholder="Visit Start Time"/>
                 <span asp-validation-for="Visit_Time" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                @*<label asp-for="Visit_End" class="control-label"></label>*@
+            <div class="form-group grp">
+                <label asp-for="Visit_End" class="control-label"><b>Visit End Time</b></label>
                 <input asp-for="Visit_End" class="form-control" placeholder="Visit End Time"/>
                 <span asp-validation-for="Visit_End" class="text-danger"></span>
             </div>
@@ -96,9 +101,9 @@
     </div>
 </div>
 
-<div>
+@*<div>
     <a asp-action="Index">Back to List</a>
-</div>
+</div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

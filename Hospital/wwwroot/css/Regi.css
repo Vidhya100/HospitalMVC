@@ -21,6 +21,7 @@
 .btn{
     cursor:pointer;
     width: 150px;
+    
 }
 input {
 /*    padding-left: 25px;*/
@@ -58,9 +59,15 @@ table {
     background-color:red;
 }
 .Profile-img {
-    width: 25px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
+ 
 }
 .action {
     width:100px;
 }
+.grp {
+    display: flex;
+    flex-direction: column;
+}
+

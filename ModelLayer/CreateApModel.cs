@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,8 +17,10 @@ namespace ModelLayer
         public int DId { get; set; }
 
  
-        [Required(ErrorMessage = "Please enter name")]
+        //[Required(ErrorMessage = "Please enter name")]
         public string Photo { get; set; }
+
+        public IFormFile ProfileImg { get; set; }
 
         [Required(ErrorMessage = "Please enter name")]
         public string Pname { get; set; }

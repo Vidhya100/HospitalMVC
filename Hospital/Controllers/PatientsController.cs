@@ -1,9 +1,12 @@
 ﻿using BussinessLayer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelLayer;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using System.IO;
 
 namespace Hospital.Controllers
 {
@@ -11,9 +14,11 @@ namespace Hospital.Controllers
     {
         private readonly IPatientsBL patientsBL;
         private readonly IHttpContextAccessor httpContext;
-        public PatientsController(IPatientsBL patientsBL)
+        private readonly IWebHostEnvironment webEnv;
+        public PatientsController(IPatientsBL patientsBL, IWebHostEnvironment webHostEnvironment)
         {
             this.patientsBL = patientsBL;
+            webEnv = webHostEnvironment;
         }
         [HttpGet]
         public IActionResult GetDocList()
@@ -57,11 +62,45 @@ namespace Hospital.Controllers
             {
                 int PId = (int)HttpContext.Session.GetInt32("UserId");
                 int DId = (int)HttpContext.Session.GetInt32("DId");
+
+                string imgPath = uploadImage(appoinments.ProfileImg);
+                appoinments.Photo = imgPath;
                 patientsBL.CreateApoointment(DId, PId, appoinments);
                 return RedirectToAction("ViewAppoinmentList");
             }
+            Console.WriteLine("Invalid patient data, returning to same view");
             return View();
         }
+
+        private string uploadImage(IFormFile profileImg)
+        {
+            string imgName = "";
+            try
+            {
+                //...\\webrootpath\\assets\\pathient-img
+                string folderpath = Path.Combine(webEnv.WebRootPath, "assets", "patient-img");
+                // Random random = new Random();
+                // int num = random.Next();
+
+                //...\\webrootpath\\assets\\pathient-img\\guid_FileNamewithExt;
+                 imgName = Guid.NewGuid().ToString() + "_" + profileImg.FileName;
+
+                string imgPath = Path.Combine(folderpath, imgName);
+                using (var fstream = new FileStream(imgPath, FileMode.CreateNew))
+                {
+                    profileImg.CopyTo(fstream);
+                }
+
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+         //   imgPath = "~\\" + imgPath.Substring(webEnv.WebRootPath.Length - 1);
+
+            return imgName;
+        }
+
         [HttpGet]
         public IActionResult ViewAppoinmentList(CreateApModel appoinment)
         {

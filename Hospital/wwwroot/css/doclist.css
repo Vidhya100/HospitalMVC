@@ -4,14 +4,14 @@
     align-content: center;
     /*width: 700px;*/
     /*margin-left: 100px;*/
-    gap: 10px 7px;
+    gap: 5px 3px;
     /*border: 1px solid black;*/
     /*//overflow-x:hidden;*/
 }
 .doc-details {
     /*border: 1px solid black;*/
     margin: 15px;
-    width: 300px;
+    width: 350px;
     align-items: center;
 }
 .details{
@@ -20,10 +20,10 @@
 }
 .pImg{
     height:320px;
-    width:280px;
+    width:300px;
 }
 .dname{
-    padding-left:35px;
+    padding-left:30px;
 }
 .degree{
     padding-left:60px;

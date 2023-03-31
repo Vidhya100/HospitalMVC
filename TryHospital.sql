@@ -83,6 +83,7 @@ create table Appointments
 )
 
 drop table Appointments
+ALTER TABLE Appointments ALTER COLUMN ProfileImg nvarchar(max);
 
 ---create new appointment by inserting data
 create or alter procedure spCreateAppointments
