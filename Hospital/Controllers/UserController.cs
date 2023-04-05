@@ -17,6 +17,11 @@ namespace Hospital.Controllers
             this.iuserBL = iuserBL;
             this.context = context;
         }
+        public IActionResult Index()
+        {
+            return View();
+        }
+        [HttpGet]
         public IActionResult RegisterAp()
         {
             return View();
