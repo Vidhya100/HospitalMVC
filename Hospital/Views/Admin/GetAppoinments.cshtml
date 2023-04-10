@@ -7,6 +7,16 @@
 
 <h1 class="text-center text-primary">Appoinments</h1>
 
+<style>
+    .table{
+        padding-left:130px;
+        padding-right:100px;
+    }
+    .icon-grp{
+
+    }
+</style>
+
 <table class="table">
     <thead>
         <tr>
@@ -113,7 +123,7 @@
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
 
                 <a class="icon-grp delete" href="@Url.Action("Delete", "Admin", new { Aid = item.AId })">
-                         <i class="fas fa-trash"></i>
+                       <i class="fas fa-trash"></i>
                 </a>
             </td>
         </tr>

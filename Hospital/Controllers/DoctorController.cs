@@ -31,6 +31,8 @@ namespace Hospital.Controllers
         //        return View();
         //    }
         //}
+
+        [Route("DoctorController/Dashboard")]
         [HttpGet]
         public IActionResult ViewAppoinmentList(CreateApModel appoinment)
         {

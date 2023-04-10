@@ -6,6 +6,14 @@
 }
 <link rel="stylesheet" href="~/css/Regi.css" />
 
+<style>
+    .row{
+        margin-left: 570px;
+        margin-bottom:25px;
+        margin-top:20px;
+    }
+</style>
+
 <h1 class="text-center text-primary">Create Appoinment</h1>
 
 @*<h4>CreateApModel</h4>
@@ -29,7 +37,7 @@
                 <input asp-for="DId" class="form-control"  value=@Context.Session.GetInt32("DId") readonly />
                 <span asp-validation-for="DId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group grp">
                 <label asp-for="Dname" class="control-label"><b>Doctor</b></label>
                 <input asp-for="Dname" class="form-control" value=@Context.Session.GetString("Dname") readonly/>
                 <span asp-validation-for="Dname" class="text-danger"></span>
@@ -54,7 +62,7 @@
                 <input asp-for="ProfileImg" class="form-control" />
                 <span asp-validation-for="ProfileImg" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group grp">
                 <label asp-for="Pname" class="control-label"><b>Fullname</b></label>
                 <input asp-for="Pname" class="form-control" />
                 <span asp-validation-for="Pname" class="text-danger"></span>
@@ -75,24 +83,24 @@
                 <input asp-for="Visit_End" class="form-control" placeholder="Visit End Time"/>
                 <span asp-validation-for="Visit_End" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group grp">
                 <label asp-for="Condition" class="control-label"><b>Email</b></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
                 
             </div>
-            <div class="form-group">
+            <div class="form-group grp">
                 <label asp-for="Number" class="control-label"><b>Mobile Number</b></label>
                 <input asp-for="Number" class="form-control" />
                 <span asp-validation-for="Number" class="text-danger" ></span>
             </div>
-            <div class="form-group">
+            <div class="form-group grp">
                 <label asp-for="Condition" class="control-label"><b>Patients Condition</b></label>
                 <input asp-for="Condition" class="form-control" placeholder="Condition"/>
                 <span asp-validation-for="Condition" class="text-danger"></span>
                 
             </div>
-            <div class="form-group">
+            <div class="form-group grp">
                 <a asp-action="ViewAppoinmentList">
                  <input type="submit" value="Submit" class="btn btn-primary" />
                 </a>

@@ -6,6 +6,8 @@
     <title>@ViewData["Title"] - EmployeePayroll_MVC_Ajax</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
 </head>
 <body>
     @*<header>
@@ -29,6 +31,12 @@
             </div>
         </nav>
     </header>*@
+    <header>  
+        <div class="content-wrapper">  
+            @Html.Partial("header")  
+        </div>  
+    </header>  
+
     <div >
         <main  >
             @RenderBody()
@@ -40,6 +48,11 @@
             &copy; 2023 - EmployeePayroll_MVC_Ajax - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>*@
+   <footer>  
+        <div class="content-wrapper">  
+            @Html.Partial("footer")  
+        </div>  
+    </footer>  
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

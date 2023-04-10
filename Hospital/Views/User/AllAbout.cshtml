@@ -1,0 +1,84 @@
+﻿@*<div>  
+    @Html.Partial("header")  
+</div> *@ 
+@{
+    ViewData["Title"] = "AllAbout";
+}
+
+
+<hr class="Hr"></hr>
+
+<div class="allAbout">
+    <div class="all_about_content">
+        <div class="left-content">
+            <img class="about-img" src="~/assets/icons/allAbout.png" />
+        </div>
+        <div class="right-content">
+            <div>
+                <span class="about-text">All About</span>
+            </div>
+            <div>
+                 <span class="slogan"> We Are The Best For Take <br>Care Of You.</span>
+            </div>
+            <div class="description">
+                <span>
+                    Our skilled doctor have tremendous exeperience with wide range of dieases <br>
+                    to serve the needs of our patients. Our skilled doctor have tremendous<br> exeperience with wide range of dieases 
+                    to serve the needs of our patients.<br> Our skilled doctor have tremendous exeperience with wide range of dieases <br>
+                    to serve the needs of our patients. Our skilled doctor have tremendous <br>exeperience with wide range of dieases 
+                    to serve the needs of our patients 
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .Hr{
+        border:none;
+        height: 20px;
+ 	    width: 100%;
+	    height: 50px;
+	    border-bottom: 1px solid #1f1209;
+	    box-shadow: 0 20px 20px -20px #333;
+        margin: -50px auto 10px; 
+    }
+    .about-img{
+        height:480px;
+    }
+    .all_about_content{
+        display:flex;
+        flex-direction: row;
+        margin-top: 65px;
+        padding-left: 50px;
+        padding-bottom:65px;
+    }
+    .right-content{
+        padding-left:35px;
+        padding-top: 60px;
+    }
+    .about-text{
+             text-transform: capitalize;
+             color: blue;
+             font-size: x-large;
+             font-weight:500;
+             margin-bottom:10px;
+            
+     }
+     .slogan{
+             font-size:xxx-large;
+             font-weight:900;
+             margin-bottom:50px;
+             padding-top:30px;
+             color:#002D62;
+     }
+     .description{
+             padding-top:57px;
+             font-size:larger;
+             font-weight:200;
+             color:grey;
+             line-height:inherit;
+             /*margin-bottom:50px;*/
+         }
+</style>
+

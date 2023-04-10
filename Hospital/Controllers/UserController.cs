@@ -21,6 +21,14 @@ namespace Hospital.Controllers
         {
             return View();
         }
+        public IActionResult AllAbout()
+        {
+            return View();
+        }
+        public IActionResult Services()
+        {
+            return View();
+        }
         [HttpGet]
         public IActionResult RegisterAp()
         {

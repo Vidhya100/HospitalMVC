@@ -9,14 +9,13 @@
           left: 0;
           bottom: 0;
           width: 100%;
-          /*background-color: midnightblue;*/
     }
     .footer-container{
         padding:8px 10px ;
         display: flex;
         flex-direction:column; 
        /* border: 1px solid black;*/
-        border-radius: 20px;
+        
        background-color: #002244;
        
     }
@@ -178,9 +177,9 @@
             font-size: 20px;
             margin-top:15px;
         }
-        /* css fpr page body*/
+        /* css fpr alicebluege body*/
         .pagebody{
-             background-color:#F0F8FF;
+             background-color:aliceblue;
              height:550px;
              width: 100%;
              display: flex;
@@ -202,6 +201,7 @@
              font-size:xxx-large;
              font-weight:900;
              margin-bottom:50px;
+               color:#002D62;
          }
          .quote3{
              font-size:larger;
@@ -232,11 +232,21 @@
             color: white;
             font-size: x-large;
         }
+        .Hr{
+        border:none;
+        height: 10px;
+ 	    width: 100%;
+	    height: 50px;
+	    border-bottom: 1px solid blue;
+	    box-shadow: 0 10px 10px -10px blue;
+        margin: -50px auto 10px; 
+        margin-bottom: 4px;
+    }
         
     
 </style>
 
-<div class="mainheader">
+@*<div class="mainheader">
        
         <div class="logo-name" asp-area="" asp-controller="User" asp-action="Index">
             <a class="e" asp-area="" asp-controller="User" asp-action="Index" >e</a>
@@ -246,7 +256,10 @@
 
         <div class="middle">
             <div class="Services">
-                <button class="service">Services</button>
+                <a asp-controller="User" asp-action="AllAbout">
+                    <button class="service">Services</button>
+                </a>
+                
             </div>
             <div class="about">
                 <button class="about">All About</button>
@@ -262,8 +275,8 @@
                  <button  class="signin ">Sign In</button>
                 </a>
         </div>
-  </div>
-
+  </div>*@
+  <hr class="Hr"></hr>
 <div class="pagebody">
     <div class="left-side">
         <div class="quote1">
@@ -306,7 +319,7 @@
     </div>
 </div>
 
-<footer class="hfooter">
+@*<footer class="hfooter">
     <div class="footer-container">          
            <div class="upper">
                <div class="column1">
@@ -372,4 +385,4 @@
            </div>
        </div>
 </footer>
-
+*@

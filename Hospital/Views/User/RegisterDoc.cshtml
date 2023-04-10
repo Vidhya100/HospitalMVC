@@ -1,4 +1,5 @@
 ﻿@model ModelLayer.RegiModel
+ 
 
 @{
     ViewData["Title"] = "RegisterDoc";
@@ -9,7 +10,16 @@
 
 <h4>RegiModel</h4>
 <hr />*@
-<div class="row">
+
+
+<style>
+    .row{
+        margin-left: 500px;
+        margin-bottom:25px;
+    }
+</style>
+
+<div class="row pb-3>
     <div class="col-md-14">
         <form asp-action="RegisterDoc">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -25,9 +35,9 @@
                        </a>
                    </div>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <h3>Register</h3>
-            </div>
+            </div>*@
             <div class="form-group">
                 @*<label asp-for="Username" class="control-label"></label>*@
                 <input asp-for="Username" class="form-control" placeholder="Username"/>
