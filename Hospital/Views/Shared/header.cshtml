@@ -1,0 +1,138 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<style>
+/* css fpr page header*/
+        .mainheader{
+            height:50px;
+            width:100%;
+            display: flex;
+            flex-direction: row;
+            border: 1px solid black;
+            border: transparent;
+            padding-top: 7px;
+            margin-bottom: 15px;
+            
+        }
+        .logo-name{
+            /*display:flex;
+            flex-direction: row;*/
+            margin-left: 7%;
+            /*border: 1px solid black;*/
+            margin-right:80px;
+        }
+        .e{
+            color:purple;
+            font-size:170%;
+            font-style:italic;
+            top:20px;
+            left:48%;
+            position:relative;
+            z-index:1;
+        }
+        .middle{
+            padding-left:20px;
+            display:flex;
+            flex-direction: row;
+            gap: 20px;
+            margin-right:50px;
+        }
+        .end{
+            /*border: 1px solid black;*/
+            margin-left:45%;
+            display:flex;
+            flex-direction: row;
+            gap: 20px;
+           /* float: right;*/
+        }
+        .logo{
+            height:50px;
+            width:104px;
+            position:absolute;
+        }
+        .clinic{
+            color:purple;
+            font-size:170%;
+            font-style:italic;
+            top:20px;
+            left:77%;
+            position:relative;
+        }
+        .service{
+            margin-top: 28px;
+        }
+        .about{
+            margin-top: 10px
+        }
+        .service, .about{
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-right: 8px;
+            padding-left: 8px;
+           /* margin-top: 18px;*/
+            color: black;
+            border: transparent;
+            background: none;
+            font-size: 15px;
+
+        }
+        .login{
+            background-color: white;
+            color: blue;
+        }
+        .signin{
+            background-color: blue;
+            color: white;
+        }
+        .login, .signin{
+            padding:5px 8px 10px 8px;
+            
+           /* background-color: white;*/
+            border:1px solid transparent;
+            border-radius:5px;
+            width: 90px;
+            height: 40px;
+            font-size: 20px;
+            margin-top:15px;
+        }
+</style>
+
+<div class="mainheader">
+       
+        <div class="logo-name" asp-area="" asp-controller="User" asp-action="Index">
+            <a class="e" asp-area="" asp-controller="User" asp-action="Index" >e</a>
+            <img class="logo" src="~/assets/icons/MedIcon.png" />
+            <a class="clinic" asp-area="" asp-controller="User" asp-action="Index">Clinic</a>
+        </div>
+
+        <div class="middle">
+            <div class="Services">
+               <a asp-controller="User" asp-action="Services">
+                    <button class="service">Services</button>
+                </a>
+            </div>
+            <div class="about">
+                <a asp-controller="User" asp-action="AllAbout">
+                    <button class="about">All About</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="end">
+                 <a asp-controller="User" asp-action="Login">
+                    <button class="login ">Log In</button>
+                 </a>
+           
+                <a asp-controller="User" asp-action="RegisterAP">
+                 <button  class="signin ">Sign In</button>
+                </a>
+        </div>
+  </div>
+
+  @*<footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - EmployeePayroll_MVC_Ajax - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>*@

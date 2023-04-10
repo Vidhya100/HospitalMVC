@@ -13,8 +13,4 @@
     <ProjectReference Include="..\ModelLayer\ModelLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\assets\patient-img\" />
-  </ItemGroup>
-
 </Project>

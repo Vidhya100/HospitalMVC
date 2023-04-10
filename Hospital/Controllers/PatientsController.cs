@@ -20,6 +20,7 @@ namespace Hospital.Controllers
             this.patientsBL = patientsBL;
             webEnv = webHostEnvironment;
         }
+        [Route("PatientsController/Dahboard")]
         [HttpGet]
         public IActionResult GetDocList()
         {
