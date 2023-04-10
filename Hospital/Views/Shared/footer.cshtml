@@ -25,7 +25,7 @@
     display: flex;
     flex-direction: row;
     /*border: 1px solid black;*/
-    column-gap: 12px;
+    column-gap: 50px;
     margin-left: 55px;
 }
 
@@ -63,15 +63,7 @@
     font-weight: 300;
 }
 
-h2 {
-    color: white;
-    font-weight: 200;
-}
 
-h4 {
-    font-weight: 100;
-    color: darkgrey;
-}
 
 .column2, .column3, .column4, .column5 {
     /* border: 1px solid black;*/
@@ -95,7 +87,13 @@ h4 {
 .col-title{
     font-weight:700;
     color:white;
-    margin-bottom:20px;
+    margin-bottom:40px;
+    margin-top:15px;
+}
+.title-divs{
+    font-weight:300;
+    color:darkgray;
+    margin-bottom:10px;
 }
 </style>
 
@@ -129,38 +127,78 @@ h4 {
                 </div>
                 
                <div class="column2"> 
-                   <span class="col-title">Company Info</span>
-                   <span margin-bottom="10px">About Us</span>
-                   <span margin-bottom="10px">Service</span>
+                   <div class="col-title">
+                       <span >Company Info</span>
+                   </div>
+                   <div  class="title-divs">
+                       <span>About Us</span>
+                   </div>
+                   <div class="title-divs">
+                       <span >Service</span>
+                   </div>
+                   
                </div>
                <div class="column3">
-                   <h2 color="white" margin-bottom="20px">Resourdes </h2>
-                   <h4 margin-bottom="10px">IOS & Android</h4>
-                   <h4 margin-bottom="10px">Watch a Demo</h4>
-                   <h4 margin-bottom="10px"> Coustamers</h4>
-                   <h4 margin-bottom="10px"> APL </h4>
+                   <div class="col-title">
+                        <span >Resourdes </span>
+                   </div>
+                  <div class="title-divs">
+                      <span >IOS & Android</span>
+                  </div>
+                   <div class="title-divs">
+                       <span >Watch a Demo</span>
+                   </div>
+                   <div class="title-divs">
+                        <span> Coustamers</span>
+                   </div>
+                   <div class="title-divs">
+                       <span > APL </span>
+                   </div>
+                   
 
                </div>
                <div class="column4"> 
-                    <h2 color="white" margin-bottom="20px">Services</h2>
-                   <h4 margin-bottom="10px"> Pediatric Clinic </h4>
-                   <h4 margin-bottom="10px"> Dental Clinic </h4>
-                   <h4 margin-bottom="10px"> General Surgery </h4>
-                   <h4 margin-bottom="10px"> Cardiologist </h4>
-                   <h4 margin-bottom="10px"> Psychological </h4>
-                   <h4 margin-bottom="10px"> Medical Store </h4>
+                   <div class="col-title">
+                       <span >Services</span>
+                   </div>
+                   <div class="title-divs">
+                       <span > Pediatric Clinic </span>
+                   </div>
+                   <div class="title-divs">
+                       <span > Dental Clinic </span>
+                   </div>
+                   <div class="title-divs">
+                       <span > General Surgery </span>
+                   </div>
+                   <div class="title-divs">
+                       <span > Cardiologist </span>
+                   </div>
+                   <div class="title-divs">
+                       <span > Psychological </span>
+                   </div>
+                   <div class="title-divs">
+                       <span > Medical Store </span>
+                   </div>
                </div>
+
                <div class="column5"> 
-                    <h2 color="white" margin-bottom="20px">Subscribe</h2>
+                   <div class="col-title">
+                        <span >Subscribe</span>
+                   </div>
+                   
                     <div class="apple">
                         <img class="Profile-img-1" src="~/assets/icons/apple.png"/>
-                        <h4 margin-bottom="10px">apple</h4>
+                        <div class="title-divs">
+                            <span >apple</span>
+                        </div>
+                        
                     </div>
                     <div class="android">
                         <img class="Profile-img-1" src="~/assets/icons/anColor.jpg"/>
-                        <h4 margin-bottom="10px">android</h4>
+                        <div class="title-divs">
+                             <span >android</span>
+                        </div>
                     </div>
-                    
                </div>
            </div>
        </div>
