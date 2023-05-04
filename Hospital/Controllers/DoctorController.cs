@@ -36,15 +36,26 @@ namespace Hospital.Controllers
         [HttpGet]
         public IActionResult ViewAppoinmentList(CreateApModel appoinment)
         {
-            //1. get doctor Id 
-            int DId = (int)HttpContext.Session.GetInt32("UserId");
-            //2. fectch appointment id's for Doctor id from doctor table
-            //3. then fetch and create list of appoinments object wih details
-            List<CreateApModel> lstAppoinments = new List<CreateApModel>();
-            lstAppoinments = doctorBL.ViewAppoinmentList(DId, appoinment).ToList();
-            return View(lstAppoinments);
+            var role = HttpContext.Session.GetString("Role");
+            if (role == "Doctor")
+            {
+                //1. get doctor Id 
+                int DId = (int)HttpContext.Session.GetInt32("UserId");
+                //2. fectch appointment id's for Doctor id from doctor table
+                //3. then fetch and create list of appoinments object wih details
+                List<CreateApModel> lstAppoinments = new List<CreateApModel>();
+                lstAppoinments = doctorBL.ViewAppoinmentList(DId, appoinment).ToList();
+                return View(lstAppoinments);
+            }
+            else
+            {
+                //if wrong role redirecting to login
+                HttpContext.Session.Clear();
+                return RedirectToAction("Login", "User");
+            }
+
         }
-
-
-     }
+    }
 }
+
+

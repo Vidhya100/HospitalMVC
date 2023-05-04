@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using System.IO;
+using Microsoft.Extensions.Logging;
 
 namespace Hospital.Controllers
 {
@@ -15,10 +16,12 @@ namespace Hospital.Controllers
         private readonly IPatientsBL patientsBL;
         private readonly IHttpContextAccessor httpContext;
         private readonly IWebHostEnvironment webEnv;
-        public PatientsController(IPatientsBL patientsBL, IWebHostEnvironment webHostEnvironment)
+        private readonly ILogger<PatientsController> logger;
+        public PatientsController(IPatientsBL patientsBL, IWebHostEnvironment webHostEnvironment, ILogger<PatientsController> logger)
         {
             this.patientsBL = patientsBL;
             webEnv = webHostEnvironment;
+            this.logger = logger;
         }
         [Route("PatientsController/Dahboard")]
         [HttpGet]
@@ -34,7 +37,9 @@ namespace Hospital.Controllers
             }
             else
             {
-                return View();
+                //if wrong role redirecting to login
+                HttpContext.Session.Clear();
+                return RedirectToAction("Login", "User");
             }
         }
         //return for storing Doctor Id and Name from view

@@ -28,7 +28,9 @@ namespace Hospital.Controllers
             }
             else
             {
-                return View();
+                //if wrong role redirecting to login
+                HttpContext.Session.Clear();
+                return RedirectToAction("Login", "User");
             }
         }
         [HttpGet]

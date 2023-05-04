@@ -1,4 +1,4 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -97,6 +97,29 @@
             font-size: 20px;
             margin-top:15px;
         }
+        .username{
+            margin-top:32px;
+        }
+        .profileImg
+        {
+            margin-top:22px;
+            height:45px;
+            width:45px;
+            position:absolute;
+        }
+        /*.logout-btn{
+               margin-top: 20px;
+               padding: 7px;
+               border-radius: 15px;
+               border: transparent;
+        }*/
+        #logout-form {
+            position: relative;
+            bottom: -56px;
+            left: 0;
+            right: 0;
+            margin: auto;
+         }
 </style>
 
 <div class="mainheader">
@@ -121,18 +144,35 @@
         </div>
 
         <div class="end">
-                 <a asp-controller="User" asp-action="Login">
-                    <button class="login ">Log In</button>
-                 </a>
+               
+                @if(Context.Session.GetString("Username") != null)
+                    {
+                        <span class="username">Welcome, @Context.Session.GetString("Username")!</span>
+                        <a href="#" class="profile-icon">
+                                <img  class="profileImg" width="42" height="42" src="~/assets/icons/profile-icon.jpg" alt="Profile icon" />
+                        <!-- Add logout form -->
+                            <div id="logout-form" style="display:none;">
+                                 <form method="post" asp-action="Logout" asp-controller="User">
+                                   <button type="submit" class="logout-btn ">Logout</button>
+                                </form>
+                            </div>
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="User" asp-action="Login">
+                            <button class="login ">Log In</button>
+                        </a>
            
-                <a asp-controller="User" asp-action="RegisterAP">
-                 <button  class="signin ">Sign In</button>
-                </a>
+                        <a asp-controller="User" asp-action="RegisterAP">
+                            <button  class="signin ">Sign Up</button>
+                        </a>
+                    }
+        
         </div>
   </div>
 
-  @*<footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - EmployeePayroll_MVC_Ajax - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>*@
+   <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
