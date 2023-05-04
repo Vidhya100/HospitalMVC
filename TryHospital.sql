@@ -33,8 +33,14 @@ create or alter procedure spRegister
 )
 as 
 begin 
-	Insert into Register(Username,Email,Password,Role,Fullname,ProfileIng,Degree,Address)
-	 values (@Username,@Email,@Password,@Role,@Fullname,@ProfileIng,@Degree,@Address);
+	begin try
+		Insert into Register(Username,Email,Password,Role,Fullname,ProfileIng,Degree,Address)
+		 values (@Username,@Email,@Password,@Role,@Fullname,@ProfileIng,@Degree,@Address);
+	end try
+	begin catch
+		Print 'Registration Failed'
+		return -1
+	end catch
 end
 
 truncate table Register
@@ -48,7 +54,24 @@ create or alter procedure  spLogin
 
 as
 begin
-	select * from Register where Email=@Email and Password = @Password;
+	begin try
+		select * from Register where Email=@Email and Password = @Password;
+
+		if @@ROWCOUNT = 0
+		begin
+			print 'Invalid email or password.';
+			return -1;
+		end
+		else
+		begin
+			print 'Login successful.';
+			return 0;
+		end
+	end try
+	begin catch
+		print ERROR_MESSAGE();
+		return -1;
+	end catch
 end
 
 Exec spLogin "vidhyadarade1@gmail.com", Vidhya@12;
@@ -60,7 +83,24 @@ create or alter procedure spGetDocList
 )
 as
 begin
-	select UserId,ProfileIng,Username,Degree,Address from Register where Role = @Role
+	begin try
+		select UserId,ProfileIng,Username,Degree,Address from Register where Role = @Role
+
+		if @@ROWCOUNT = 0
+		begin
+			print 'No records found.';
+			return -1;
+		end
+		else
+		begin
+			print 'Records found.';
+			return 0;
+		end
+	end try
+	begin catch
+		print ERROR_MESSAGE();
+		return -1;
+	end catch
 end
 
 ---appoinment table
@@ -106,22 +146,31 @@ create or alter procedure spCreateAppointments
 )
 as 
 begin
-	Insert into Appointments values (
+	begin try
+
+		Insert into Appointments values (
 	
 
-	@PId,
-	@DId ,
-	@Pname,
-	@Dname,
-	@ProfileImg ,
-	@Email ,
-	@Date ,
-	@VisitStartTime ,
-	@VisiteEndTime ,
-	@Number ,
-	@Condition,
-	@isHide
-	 )
+		@PId,
+		@DId ,
+		@Pname,
+		@Dname,
+		@ProfileImg ,
+		@Email ,
+		@Date ,
+		@VisitStartTime ,
+		@VisiteEndTime ,
+		@Number ,
+		@Condition,
+		@isHide
+		 )
+		 print 'Appoinment created successfully'
+		 ---retrun indicate the status of the operation successful or not.
+		 return 0;
+	end try
+	begin catch
+		print ERROR_MESSAGE();
+	end catch
 end
 
 --get Apppointment Id from Appointment table for doctor and patient
@@ -133,7 +182,14 @@ create or alter procedure spGetAppointmentID
 )
 as 
 begin
-	Select AId from Appointments where DId=@DId and PId = @PId
+	begin try
+		Select AId from Appointments where DId=@DId and PId = @PId
+		return 0
+	end try
+	begin catch
+		print ERROR_MESSAGE();
+		return -1;
+	end catch
 end
 
 --Get All appointment details 
@@ -143,7 +199,12 @@ create or alter procedure spAppoinmentDetails
 )
 as
 begin
-	select DId,PId,ProfileImg,Pname,Email,Date,VisitStartTime,VisiteEndTime,Dname,Number,Condition from Appointments where AId =@AId
+	begin try
+		select DId,PId,ProfileImg,Pname,Email,Date,VisitStartTime,VisiteEndTime,Dname,Number,Condition from Appointments where AId =@AId
+	end try
+	begin catch
+		print ERROR_MESSAGE();
+	end catch
 end
 
 -----doctor table
@@ -171,14 +232,14 @@ drop table Patient
 drop table Appointments
 
 ---Add AId in doctor table
-create or alter procedure spDoctorAppointment(
+--create or alter procedure spDoctorAppointment(
 	
-	@AId int
-)
-as
-begin
-	Insert into Doctor values (@AId)
-end
+--	@AId int
+--)
+--as
+--begin
+--		Insert into Doctor values (@AId)
+--end
 ------get  apponment Id from doctor table
 create or alter procedure GetAppoinmentList
 (
@@ -187,7 +248,12 @@ create or alter procedure GetAppoinmentList
 )
 as 
 begin
-	select AId from Doctor where DId = @DId 
+	begin try
+		select AId from Doctor where DId = @DId 
+	end try
+	begin catch
+		print ERROR_MESSAGE();
+	end catch
 end
 
 ----insert values in doctor and patient table
@@ -200,9 +266,13 @@ create or alter procedure spDPAppointment
 )
 as
 begin
-
-	insert into Doctor values(@DId,@AId,@isHide)
-	insert into Patient values(@PId,@AId,@isHide)
+	begin try
+		insert into Doctor values(@DId,@AId,@isHide)
+		insert into Patient values(@PId,@AId,@isHide)
+	end try
+	begin catch
+		print ERROR_MESSAGE();
+	end catch
 end
 
 ---get Aid from patient where PId=PId and not hide
@@ -212,7 +282,12 @@ create or alter procedure GetPAppoinmentList
 )
 as
 begin
-	 select AId from Patient where PId = @PId and isHide=0
+	begin try
+		select AId from Patient where PId = @PId and isHide=0
+	end try
+	begin catch
+		print ERROR_MESSAGE();
+	end catch
 end
 ---get appoinment details from appoinment where AId and PId given
 create or alter  procedure GetPatientAppoinments  
@@ -221,8 +296,13 @@ create or alter  procedure GetPatientAppoinments
  @PId int  
 )  
 as  
-begin  
- SELECT AId,ProfileImg,Pname,Email,Date,VisitStartTime,VisiteEndTime,Number,Dname,Condition FROM Appointments WHERE AId = @AId and PId = @PId  
+begin 
+	begin try 
+		SELECT AId,ProfileImg,Pname,Email,Date,VisitStartTime,VisiteEndTime,Number,Dname,Condition FROM Appointments WHERE AId = @AId and PId = @PId  
+	end try
+	begin catch
+		print ERROR_MESSAGE();
+	end catch
 end
 
 ---get appoinment details from appoinment for given AId
@@ -231,8 +311,13 @@ create or alter  procedure spAppoinmentDetails
  @AId int  
 )  
 as  
-begin  
- select AId,DId,PId,ProfileImg,Pname,Email,Date,VisitStartTime,VisiteEndTime,Dname,Number,Condition from Appointments where AId =@AId  
+begin
+	begin try  
+		select AId,DId,PId,ProfileImg,Pname,Email,Date,VisitStartTime,VisiteEndTime,Dname,Number,Condition from Appointments where AId =@AId
+	end try
+	begin catch
+		print ERROR_MESSAGE();
+	end catch  
 end
 
 --get aid from doctor where DId is given
@@ -242,25 +327,40 @@ create or alter  procedure GetAppoinmentList
  @DId int  
 )  
 as   
-begin  
- select AId from Doctor where DId = @DId  and isHide=0;  
+begin
+	begin try  
+		select AId from Doctor where DId = @DId  and isHide=0;  
+	end try
+	begin catch
+		print ERROR_MESSAGE();
+	end catch
 end
 ---get appoinment details from appoinments where Aid and Did given
 create or alter  procedure GetDocAppoinments  
-(  
+ (  
  @AId int,  
  @DId int  
 )  
 as  
 begin  
- SELECT AId,ProfileImg,Pname,Email,Date,VisitStartTime,VisiteEndTime,Number,Dname,Condition FROM Appointments WHERE AId = @AId and DId = @DId  
+	begin try
+		SELECT AId,ProfileImg,Pname,Email,Date,VisitStartTime,VisiteEndTime,Number,Dname,Condition FROM Appointments WHERE AId = @AId and DId = @DId  
+	end try
+	begin catch
+		print ERROR_MESSAGE();
+	end catch
 end
 
 ---select all from appoinments for admin
 create or alter  procedure GetAllAppoinments  
 as  
-begin  
- select AId,DId,PId,ProfileImg,Pname,Email,Date,VisitStartTime,VisiteEndTime,Dname,Number,Condition from Appointments  where isHide=0
+begin 
+	begin try 
+		select AId,DId,PId,ProfileImg,Pname,Email,Date,VisitStartTime,VisiteEndTime,Dname,Number,Condition from Appointments  where isHide=0
+	end try
+	begin catch
+		print ERROR_MESSAGE();
+	end catch
 end
 
 --select  AId,DId,PId,ProfileImg,Pname,Email,Date,VisitStartTime,VisiteEndTime,Dname,Number,Condition from Appointments where isHide=0
@@ -282,7 +382,12 @@ create or alter  procedure spUpdate
 )  
 as  
 begin  
-  Update Appointments SET ProfileImg=@ProfileImg,Pname=@Pname,Email=@Email,Date=@Date,VisitStartTime=@VisitStartTime, VisiteEndTime=@VisiteEndTime,Number=@Number,Dname=@Dname,Condition = @Condition where AId=@AId;  
+	begin try
+		 Update Appointments SET ProfileImg=@ProfileImg,Pname=@Pname,Email=@Email,Date=@Date,VisitStartTime=@VisitStartTime, VisiteEndTime=@VisiteEndTime,Number=@Number,Dname=@Dname,Condition = @Condition where AId=@AId;
+	end try
+	begin catch
+		print ERROR_MESSAGE()
+	end catch  
 end
 
 --for removing from Ui but stored in database used flags
@@ -292,9 +397,24 @@ create or alter  procedure spRemove
 )  
 as  
 begin  
-  Update Doctor Set  isHide=1 where AId = @AId;  
-  Update Patient Set  isHide=1 where AId = @AId; 
-  Update Appointments Set  isHide=1 where AId = @AId; 
+	 begin try
+        if exists (select 1 from Appointments where AId = @AId)
+			 begin
+				update Doctor set isHide = 1 where AId = @AId;
+				update Patient set isHide = 1 where AId = @AId;
+				update Appointments set isHide = 1 where AId = @AId;
+			end
+        else
+			begin
+				print 'Appointment not found';
+			end
+    end try
+    begin catch
+        print ERROR_MESSAGE() ;
+    end catch
+  --Update Doctor Set  isHide=1 where AId = @AId;  
+  --Update Patient Set  isHide=1 where AId = @AId; 
+  --Update Appointments Set  isHide=1 where AId = @AId; 
 end
 
 ---for deleting permenantly
@@ -339,6 +459,8 @@ exec sp_helptext '[dbo].[GetDocAppoinments]'
 exec sp_helptext '[dbo].[GetAllAppoinments]'
 exec sp_helptext '[dbo].[spUpdate]'
 exec sp_helptext '[dbo].[spDelete]'
+
+exec sp_helptext '[dbo].[spDoctorAppointment]'
 
 exec sp_helptext 'spDPAppointment'
 

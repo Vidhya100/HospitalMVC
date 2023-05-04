@@ -84,6 +84,7 @@ namespace Hospital.Controllers
                     if (result.Role.Equals("Admin"))
                     {
                         return RedirectToAction("GetAppoinments", "Admin");
+                       
                     }
                     else if (result.Role.Equals("Doctor"))
                     {
@@ -99,6 +100,12 @@ namespace Hospital.Controllers
                 return RedirectToAction("Login");
             }
             return View();
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+             return RedirectToAction("Login", "User");
         }
     }
 }

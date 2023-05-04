@@ -5,6 +5,12 @@
     ViewData["Title"] = "CreateApoointment";
 }
 <link rel="stylesheet" href="~/css/Regi.css" />
+<link href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet"/>
+
+
+ @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>*@
 
 <style>
     .row{
@@ -68,19 +74,19 @@
                 <span asp-validation-for="Pname" class="text-danger"></span>
             </div>
              
-            <div class="form-group grp">
-                <label asp-for="Date" class="control-label" style="margin-right:10px;"><b>Date</b></label>
-                <input asp-for="Date" class="form-control" placeholder="Date"/>
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
+           @* <div class="form-group grp">
+                <label asp-for="Date" class="control-label" style="margin-right:10px;"><b>Date</b></label>*@
+                <input asp-for="Date" class="form-control" placeholder="Date" type="hidden"/>
+               @* <span asp-validation-for="Date" class="text-danger"></span>
+            </div>*@
             <div class="form-group grp">
                 <label asp-for="Visit_Time" class="control-label"><b>Visit Start Time</b></label>
-                <input asp-for="Visit_Time" class="form-control" placeholder="Visit Start Time"/>
+                <input asp-for="Visit_Time" id="datepicker" class="form-control" placeholder="Visit Start Time" />
                 <span asp-validation-for="Visit_Time" class="text-danger"></span>
             </div>
             <div class="form-group grp">
                 <label asp-for="Visit_End" class="control-label"><b>Visit End Time</b></label>
-                <input asp-for="Visit_End" class="form-control" placeholder="Visit End Time"/>
+                <input asp-for="Visit_End" id="datepicker1" class="form-control" placeholder="Visit End Time"/>
                 <span asp-validation-for="Visit_End" class="text-danger"></span>
             </div>
             <div class="form-group grp">
@@ -112,6 +118,30 @@
 @*<div>
     <a asp-action="Index">Back to List</a>
 </div>*@
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+       @* <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>*@
+
+        @*<script>
+             // Get the current date
+                //var currentDate = new Date();
+                //var tomorrow = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1);
+            // Find the datetime picker input element and initialize the datetime picker
+                $('.datepicker').datepicker().datepicker( "option",{
+                     minDate: currentDate
+                     //maxDate:  tomorrow
+                });
+                // $('#datepicker1').datepicker().datepicker( "option",{
+                //     minDate: currentDate,
+                //     maxDate:  tomorrow
+                //});
+                
+        </script>*@
+       @* <script src="~/js/site.js" asp-append-version="true"></script>*@
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
